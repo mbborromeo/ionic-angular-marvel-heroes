@@ -17,11 +17,11 @@ export class CharactersComponent implements OnInit {
 
     this.charactersService.getCharacters()
       .subscribe( data => this.characters = data.results );
-      //.then( data => this.characters = data );
   }
 
   ngOnInit() {
     this.getCharacters();
+    console.log( "characters.components: characters are ", this.characters );
   }
 
 }

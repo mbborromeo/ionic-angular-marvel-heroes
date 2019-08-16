@@ -6,9 +6,11 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import md5 from 'crypto-js/md5';
 
+/*
 interface MarvelResponse {
   readonly items: Character[];
 }
+*/
 
 @Injectable({
   providedIn: 'root'
@@ -21,13 +23,14 @@ export class MarvelApiCallService {
   ) { }
 
   //Auth signing: https://github.com/brix/crypto-js
-  //https://stackoverflow.com/questions/38626334/rest-api-call-through-marvel-dont-know-syntax-works-with-md5
   private publicKey = '071a199f0748e4784ec9d1a918a6c22a';
   private privateKey = '5a074608a129b10cb01e080985b97624e4b46187';
   private ts = new Date().getTime();
   private stringToHash = this.ts + this.privateKey + this.publicKey;
   private hash = md5( this.stringToHash ).toString();
-  private marvelUrl = 'https://gateway.marvel.com:443/v1/public/characters?ts=' + this.ts + "&apikey=" + this.publicKey + "&hash=" + this.hash;
+  private marvelUrl = 'https://gateway.marvel.com:443/v1/public/characters?ts=' + this.ts 
+    + "&apikey=" + this.publicKey 
+    + "&hash=" + this.hash;
     
   /** Log a PhotoService message with the MessageService */
   private log(message: string) {
@@ -56,19 +59,14 @@ export class MarvelApiCallService {
     // Send the message _after_ fetching the photos
     this.messageService.add('MarvelApiCallService: fetched characters');
 
-    /*  
-    return this.http.jsonp<MarvelResponse>(this.marvelUrl, this.callbackParamKey)      
+    return this.http.get<any>(this.marvelUrl) //Character[], MarvelResponse
       .pipe(
-        tap(_ => this.log('fetched characters')),
+        tap( _ => this.log('fetched data') ),
+        //tap( r => this.log('data is ' + r), ),
+        tap( r => console.log('data is ', r), ),
         //map( ({ items }) => items ),
+        map( r => r.data.results ),
         catchError(this.handleError<Character[]>('getCharacters', []))
-      ).toPromise();
-    */
-
-   return this.http.get<Character[]>(this.marvelUrl)
-    .pipe(
-      tap(_ => this.log('fetched characters')),
-      catchError(this.handleError<Character[]>('getCharacters', []))
-    );
+      );
   }
 }

@@ -25,20 +25,19 @@ export class CharactersService {
       console.error(error); // log to console instead
 
       // Let the app keep running by returning an empty result.
-      //return result as T;
       return of(result as T); //.toPromise()
     };
   }
 
   getCharacters(): Observable<any> { //Character[], Promise<any>
-    console.log("character.service: getCharacters()");
+    console.log("characters.service: getCharacters()");
 
     if( this.characters === undefined) {
-      console.log("this.characters is undefined");
+      console.log("characters is undefined");
       this.characters = this.marvelAPI.getCharacters();      
     }
 
-    console.log("this.characters value is: ", this.characters);
+    console.log("characters value: ", this.characters);
 
     return this.characters;
   }
