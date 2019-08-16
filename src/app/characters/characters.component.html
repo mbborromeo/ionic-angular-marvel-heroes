@@ -8,8 +8,9 @@
   <div *ngIf="!characters">
     characters are loading...
   </div>
-  <div *ngIf="characters">
-    characters have loaded!
+  <div *ngIf="characters.length">
+    characters have loaded! character 1's name is: 
+    {{ characters[0].name }}.
   </div>
 
   <ion-list>

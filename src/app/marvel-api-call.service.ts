@@ -63,7 +63,7 @@ export class MarvelApiCallService {
       .pipe(
         tap( _ => this.log('fetched data') ),
         tap( r => console.log('data is ', r), ),        
-        map( r => r.data.results ),
+        //map( r => r.data.results ),
         catchError(this.handleError<Character[]>('getCharacters', []))
       );
   }
