@@ -9,6 +9,7 @@ import { CharactersService } from './characters.service';
 })
 export class CharactersComponent implements OnInit {
   characters: Character[];
+  marvelData: {};
   
   constructor( private charactersService: CharactersService ) { }
 
@@ -17,11 +18,11 @@ export class CharactersComponent implements OnInit {
 
     this.charactersService.getCharacters()
       .subscribe( data => this.characters = data.results );
+      //.subscribe( data => this.marvelData = data );  
   }
 
   ngOnInit() {
-    this.getCharacters();
-    console.log( "characters.components: characters are ", this.characters );
+    this.getCharacters();    
   }
 
 }

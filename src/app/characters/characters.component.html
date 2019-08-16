@@ -4,10 +4,18 @@
   <!-- Searchbar with a placeholder -->
   <ion-searchbar placeholder="Search characters"></ion-searchbar>
   <br />
-  Testing
 
-  <ion-list *ngIf="characters.length">
-    Characters not empty
+  <div *ngIf="!characters">
+    characters are loading...
+  </div>
+  <div *ngIf="characters">
+    characters have loaded!
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-label><a routerLink="/character/1">Test 1</a></ion-label>
+    </ion-item>  
 
     <ion-item *ngFor="let hero of characters">
       <ion-label><a routerLink="/character/{{ hero.id }}">{{ hero.name }}</a></ion-label>

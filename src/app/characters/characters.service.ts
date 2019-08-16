@@ -33,7 +33,7 @@ export class CharactersService {
     console.log("characters.service: getCharacters()");
 
     if( this.characters === undefined) {
-      console.log("characters is undefined");
+      console.log("characters UNDEFINED");
       this.characters = this.marvelAPI.getCharacters();      
     }
 

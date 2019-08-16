@@ -27,7 +27,7 @@ export class MarvelApiCallService {
   private privateKey = '5a074608a129b10cb01e080985b97624e4b46187';
   private ts = new Date().getTime();
   private stringToHash = this.ts + this.privateKey + this.publicKey;
-  private hash = md5( this.stringToHash ).toString();
+  private hash = md5( this.stringToHash );
   private marvelUrl = 'https://gateway.marvel.com:443/v1/public/characters?ts=' + this.ts 
     + "&apikey=" + this.publicKey 
     + "&hash=" + this.hash;
@@ -62,9 +62,7 @@ export class MarvelApiCallService {
     return this.http.get<any>(this.marvelUrl) //Character[], MarvelResponse
       .pipe(
         tap( _ => this.log('fetched data') ),
-        //tap( r => this.log('data is ' + r), ),
-        tap( r => console.log('data is ', r), ),
-        //map( ({ items }) => items ),
+        tap( r => console.log('data is ', r), ),        
         map( r => r.data.results ),
         catchError(this.handleError<Character[]>('getCharacters', []))
       );
