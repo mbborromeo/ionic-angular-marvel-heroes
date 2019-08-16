@@ -22,7 +22,8 @@ export class CharactersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCharacters();    
+    this.getCharacters();   
+    console.log("characters.component: characters are: ", this.characters); 
   }
 
 }
