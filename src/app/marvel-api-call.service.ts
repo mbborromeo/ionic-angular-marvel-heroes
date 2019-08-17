@@ -8,6 +8,7 @@ import md5 from 'crypto-js/md5';
 
 /*
 interface MarvelResponse {
+  data: {};
   readonly items: Character[];
 }
 */
@@ -28,9 +29,12 @@ export class MarvelApiCallService {
   private ts = new Date().getTime();
   private stringToHash = this.ts + this.privateKey + this.publicKey;
   private hash = md5( this.stringToHash );
-  private marvelUrl = 'https://gateway.marvel.com:443/v1/public/characters?ts=' + this.ts 
-    + "&apikey=" + this.publicKey 
-    + "&hash=" + this.hash;
+  private marvelSearchCategory = "";
+  private marvelAPIQueryString = "";
+  private marvelAPIBase = 'https://gateway.marvel.com:443/v1/public/';
+  private tsString = "?ts=" + this.ts;
+  private apiKeyString = "&apikey=" + this.publicKey;
+  private hashString = "&hash=" + this.hash;
     
   /** Log a PhotoService message with the MessageService */
   private log(message: string) {
@@ -54,16 +58,39 @@ export class MarvelApiCallService {
     };
   }
 
-  getCharacters(): Observable<Character[]> { //Promise<any>
-    console.log('marvel-api-call: getCharacters() this.marvelUrl is: ', this.marvelUrl);
+  getCharacters(): Observable<Character[]> {    
     // Send the message _after_ fetching the photos
     this.messageService.add('MarvelApiCallService: fetched characters');
 
-    return this.http.get<any>(this.marvelUrl) //Character[], MarvelResponse
+    this.marvelSearchCategory = "characters";    
+    this.marvelAPIQueryString = this.marvelAPIBase + 
+      this.marvelSearchCategory + 
+      this.tsString + 
+      this.apiKeyString + 
+      this.hashString;
+
+    return this.http.get<any>(this.marvelAPIQueryString) //Character[], MarvelResponse
       .pipe(
-        tap( r => console.log('fetched data is ', r), ),        
+        tap( r => console.log('fetched characterS data is ', r), ),        
         //map( r => r.data.results ),
         catchError(this.handleError<Character[]>('getCharacters', []))
+      );
+  }
+
+  getCharacter( id: number ): Observable<Character> {
+    this.messageService.add('MarvelAPICallService: fetched character');
+
+    this.marvelSearchCategory = "characters" + "/" + id;
+    this.marvelAPIQueryString = this.marvelAPIBase + 
+      this.marvelSearchCategory + 
+      this.tsString + 
+      this.apiKeyString + 
+      this.hashString;
+
+    return this.http.get<any>(this.marvelAPIQueryString)
+      .pipe(
+        tap( r => console.log('fetched character data is ', r), ),                
+        catchError(this.handleError<Character>('getCharacter'))
       );
   }
 }

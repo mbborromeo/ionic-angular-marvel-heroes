@@ -6,9 +6,9 @@ import { MarvelApiCallService } from '../marvel-api-call.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CharactersService {
+export class CharacterService {
 
-  private characters: Observable<Character[]>;
+  private character: Observable<Character>;
 
   constructor(
     private marvelAPI: MarvelApiCallService,
@@ -29,17 +29,16 @@ export class CharactersService {
     };
   }
 
-  getCharacters(): Observable<any> { //Character[], Promise<any>
-    console.log("characters.service: getCharacters()");
+  getCharacter( id: number ): Observable<any> {
+    console.log("character.service: getCharacter()");
 
-    if( this.characters === undefined) {
-      console.log("characters UNDEFINED");
-      this.characters = this.marvelAPI.getCharacters();      
+    if( this.character === undefined) {
+      console.log("character UNDEFINED");
+      this.character = this.marvelAPI.getCharacter( id );      
     }
 
-    console.log("characters value: ", this.characters);
+    console.log("character value: ", this.character);
 
-    return this.characters;
+    return this.character;
   }
-
 }

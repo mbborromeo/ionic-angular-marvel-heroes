@@ -1,7 +1,26 @@
-<div>
-  <p>
-    character ID is: {{ id }}
-  </p>
+<div class="ion-padding">
+  <h1>Character</h1>
+
+  <div *ngIf="!character">
+    character is loading or is not found<br />
+  </div>
   
+  <div *ngIf="character">
+    
+    <p>
+      character name is: {{ character.name }}
+    </p>
+    <p>
+      character ID is: {{ id }}
+    </p>
+    <p>
+      character description is: {{ character.description }}
+    </p>
+
+    <img src="{{ character.thumbnail.path + '.' + character.thumbnail.extension }}" />
+    
+  </div>
+      
+  <br />
   <a routerLink="/characters">&laquo; Back to characters</a>
 </div>

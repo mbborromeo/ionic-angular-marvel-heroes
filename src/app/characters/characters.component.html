@@ -1,21 +1,14 @@
 <div class="ion-padding">
   <h1>Characters</h1>
 
-  <!-- Searchbar with a placeholder -->
   <ion-searchbar placeholder="Search characters"></ion-searchbar>
   <br />
 
   <div *ngIf="!characters">
     characters are loading...<br />
-    <ion-item>
-      <ion-label><a routerLink="/character/1">Test 1 only - not yet loaded</a></ion-label>
-    </ion-item>  
   </div>
 
-  <div *ngIf="characters && characters.length">
-    characters have loaded! character 1's name is: 
-    {{ characters[0].name }}.
-  
+  <div *ngIf="characters && characters.length">  
     <ion-list>
       <ion-item *ngFor="let hero of characters">
         <ion-label><a routerLink="/character/{{ hero.id }}">{{ hero.name }}</a></ion-label>
