@@ -9,21 +9,28 @@ import { CharactersService } from './characters.service';
 })
 export class CharactersComponent implements OnInit {
   characters: Character[];
-  marvelData: {};
+  //private loading: boolean = true;
   
   constructor( private charactersService: CharactersService ) { }
 
   getCharacters(): void {
     console.log("characters.component: getCharacters()");
 
-    this.charactersService.getCharacters()
-      .subscribe( data => this.characters = data.results );
-      //.subscribe( data => this.marvelData = data );  
+    this.charactersService.getCharacters()      
+      .subscribe( 
+        data => {
+          this.characters = data.results;
+          //this.loading = false;
+          console.log("characters.component: this.characters inside subscribe are: ", this.characters); 
+        }
+      );
+      
+      console.log("characters.component: this.characters after subscribe are: ", this.characters); 
   }
 
   ngOnInit() {
     this.getCharacters();   
-    console.log("characters.component: characters are: ", this.characters); 
+    console.log("characters.component: characters on ngOnInit are: ", this.characters); 
   }
 
 }
