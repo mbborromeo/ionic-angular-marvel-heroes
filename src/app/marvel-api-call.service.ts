@@ -61,7 +61,6 @@ export class MarvelApiCallService {
 
     return this.http.get<any>(this.marvelUrl) //Character[], MarvelResponse
       .pipe(
-        //tap( _ => this.log('fetched data') ),
         tap( r => console.log('fetched data is ', r), ),        
         //map( r => r.data.results ),
         catchError(this.handleError<Character[]>('getCharacters', []))
