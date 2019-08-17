@@ -16,16 +16,27 @@ export class CharactersComponent implements OnInit {
   getCharacters(): void {
     console.log("characters.component: getCharacters()");
 
+    // Create observer object
+    const myObserver = {
+      next: payload => {        
+        console.log('Observer got a next value ', payload);
+        console.log('Observer results is ', payload.data.results);
+        this.characters = payload.data.results;
+        console.log("characters.component: this.characters inside subscribe are: ", this.characters); 
+      },
+      error: err => console.error('Observer got an error: ' + err),
+      complete: () => console.log("this.characters when subscribe complete: ", this.characters),
+    };
+
     this.charactersService.getCharacters()      
-      .subscribe( 
-        data => {
+      .subscribe( myObserver );
+      /*
+      .subscribe( data => {
           this.characters = data.results;
-          //this.loading = false;
           console.log("characters.component: this.characters inside subscribe are: ", this.characters); 
         }
       );
-      
-      console.log("characters.component: this.characters after subscribe are: ", this.characters); 
+      */      
   }
 
   ngOnInit() {
