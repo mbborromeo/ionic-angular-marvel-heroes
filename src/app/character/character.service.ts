@@ -30,7 +30,7 @@ export class CharacterService {
   }
 
   getCharacter( id: number ): Observable<any> {
-    console.log("character.service: getCharacter()");
+    console.log("character.service: getCharacter( id ) ID is: " + id);
 
     if( this.character === undefined) {
       console.log("character UNDEFINED");

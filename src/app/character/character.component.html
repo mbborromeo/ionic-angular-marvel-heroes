@@ -4,21 +4,33 @@
   <a routerLink="/characters">&laquo; Back to characters</a>
   <br />
 
-  <div *ngIf="!character">
-    character is loading or is not found<br />
+  <div *ngIf="!character && loading">
+    character is loading...<br />
   </div>
   
-  <div *ngIf="character">
-    
+  <div *ngIf="character && !loading">    
+    <p>
+      character ID from URL is correct: {{ id }}
+    </p>
     <p>
       character name is: {{ character.name }}
-    </p>
-    <p>
-      character ID is: {{ id }}
-    </p>
+    </p>    
     <p>
       character description is: {{ character.description }}
     </p>
+
+    <hr />
+
+    <p>
+      character ID from Payload is incorrect: {{ confirmID }}
+    </p>   
+    <p>
+      character name from Payload is: {{ name }}
+    </p>
+    <p>
+      character description from Payload is: {{ description }}
+    </p>    
+    
 
     <img src="{{ character.thumbnail.path + '.' + character.thumbnail.extension }}" />
     

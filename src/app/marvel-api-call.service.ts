@@ -78,6 +78,8 @@ export class MarvelApiCallService {
   }
 
   getCharacter( id: number ): Observable<Character> {
+    console.log("marvelAPICallService: getCharacter(id) ID is: " + id);
+
     this.messageService.add('MarvelAPICallService: fetched character');
 
     this.marvelSearchCategory = "characters" + "/" + id;
