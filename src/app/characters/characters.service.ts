@@ -11,7 +11,7 @@ export class CharactersService {
   private characters: Observable<Character[]>;
 
   constructor(
-    private marvelAPI: MarvelApiCallService,
+    private marvelAPI: MarvelApiCallService
   ) { }
 
   /**

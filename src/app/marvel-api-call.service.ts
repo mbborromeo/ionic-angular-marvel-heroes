@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Character } from './character/character';
-import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import md5 from 'crypto-js/md5';
@@ -19,8 +18,7 @@ interface MarvelResponse {
 export class MarvelApiCallService {
 
   constructor(
-    private http: HttpClient,
-    private messageService: MessageService
+    private http: HttpClient
   ) { }
 
   //Auth signing: https://github.com/brix/crypto-js
@@ -35,11 +33,6 @@ export class MarvelApiCallService {
   private tsString = "?ts=" + this.ts;
   private apiKeyString = "&apikey=" + this.publicKey;
   private hashString = "&hash=" + this.hash;
-    
-  /** Log a PhotoService message with the MessageService */
-  private log(message: string) {
-    this.messageService.add(`MarvelApiCallService: ${message}`);
-  }
 
   /**
    * Handle Http operation that failed.
@@ -51,16 +44,12 @@ export class MarvelApiCallService {
     return (error: any): Observable<T> => {
       console.error(error);
 
-      this.log(`${operation} failed: ${error.message}`);
-
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
 
-  getCharacters(): Observable<Character[]> {    
-    // Send the message _after_ fetching the photos
-    this.messageService.add('MarvelApiCallService: fetched characters');
+  getCharacters(): Observable<Character[]> {
 
     this.marvelSearchCategory = "characters";    
     this.marvelAPIQueryString = this.marvelAPIBase + 
@@ -79,8 +68,6 @@ export class MarvelApiCallService {
 
   getCharacter( id: number ): Observable<Character> {
     console.log("marvelAPICallService: getCharacter(id) ID is: " + id);
-
-    this.messageService.add('MarvelAPICallService: fetched character');
 
     this.marvelSearchCategory = "characters" + "/" + id;
     this.marvelAPIQueryString = this.marvelAPIBase + 
