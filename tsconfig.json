@@ -10,6 +10,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "allowSyntheticDefaultImports": true, //needed for MD5 import
     "target": "es2015",
     "typeRoots": [
       "node_modules/@types"
