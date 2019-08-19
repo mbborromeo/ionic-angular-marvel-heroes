@@ -4,7 +4,10 @@
   <a routerLink="/home">&laquo; Back to home</a>
   <br />
 
-  <ion-searchbar placeholder="Search characters"></ion-searchbar>
+  <ion-searchbar placeholder="Search characters" #searchInput></ion-searchbar>
+  <ion-button (click)="searchCharacters(searchInput.value)">Search</ion-button>
+  <ion-button (click)="clearSearch()">Reset</ion-button>
+
   <br />
 
   <div *ngIf="!characters">
@@ -17,7 +20,5 @@
         <ion-label><a routerLink="/character/{{ hero.id }}">{{ hero.name }}</a></ion-label>
       </ion-item>
     </ion-list>
-  </div>
-
-  
+  </div>  
 </div>

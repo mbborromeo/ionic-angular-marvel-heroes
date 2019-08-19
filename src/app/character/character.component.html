@@ -14,13 +14,13 @@
   
   <div *ngIf="character && !loading">    
     <p>
-      character ID: {{ id }}
-    </p>
-    <p>
-      character name is: {{ character.name }}
+      <b>{{ character.name }}</b>
     </p>    
     <p>
-      character description is: {{ character.description }}
+      ID: {{ id }}
+    </p>    
+    <p>
+      Description: {{ character.description }}
     </p>
 
     <img src="{{ character.thumbnail.path + '.' + character.thumbnail.extension }}" />    
