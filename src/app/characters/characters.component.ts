@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup } from '@angular/forms';
 import { Character } from '../character/character';
 import { MarvelApiCallService } from '../marvel-api-call.service';
 
@@ -9,7 +8,7 @@ import { MarvelApiCallService } from '../marvel-api-call.service';
   styleUrls: ['./characters.component.scss'],
 })
 export class CharactersComponent implements OnInit {
-  characters: Character[];
+  private characters: Character[]; //Observable<Character[]>
   private loading: boolean = false;
   
   constructor( private marvelService: MarvelApiCallService ) { }

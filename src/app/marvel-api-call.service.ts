@@ -80,9 +80,18 @@ export class MarvelApiCallService {
     );
   }
 
-  getComicsOfCharacter( characterID: number ): Observable<Comic[]> {
+  getComicsOfCharacter( id: number ): Observable<Comic[]> {
     //https://gateway.marvel.com:443/v1/public/characters/1009149/comics?
+    let marvelAPIQueryString = `${ this.marvelAPIBase }characters/${ id }/comics?ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
     
+    return this.http.get<any>(marvelAPIQueryString)
+      .pipe(
+        tap( payload => console.log('fetched getComicsOfCharacter data is ', payload), ),
+        map( payload => payload.data.results ),
+        catchError(this.handleError<Character[]>('getComicsOfCharacter', [])
+      )
+    );
+
     return ;
   }
 

@@ -1,3 +1,27 @@
-<p>
-  comics works!
-</p>
+<div class="ion-padding">
+  <h1>
+    Comics 
+    <span *ngIf="characterName && !loadingName">
+      {{ characterName }} appear in
+    </span>
+  </h1>
+
+  <a routerLink="/character/{{ characterID }}">&laquo; Back to character</a>
+  <br />
+
+  <div *ngIf="comics.length===0 && loading">
+    loading...<br />
+  </div>
+
+  <div *ngIf="comics.length===0 && !loading">
+    no comics found<br />
+  </div>
+
+  <div *ngIf="comics.length>0 && !loading"> 
+    <ion-list>
+      <ion-item *ngFor="let comic of comics">
+        <ion-label><a routerLink="/comic/{{ comic.id }}">{{ comic.title }}</a></ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</div>
