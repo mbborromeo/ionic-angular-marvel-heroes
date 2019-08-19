@@ -21,19 +21,13 @@ export class MarvelApiCallService {
     private http: HttpClient
   ) { }
 
-  //Auth signing: https://github.com/brix/crypto-js
+  //Auth signing: https://github.com/brix/crypto-js  
   private publicKey = '071a199f0748e4784ec9d1a918a6c22a';
-  private privateKey = '5a074608a129b10cb01e080985b97624e4b46187';
+  private privateKey = '5a074608a129b10cb01e080985b97624e4b46187';  
   private ts = new Date().getTime();
-  private stringToHash = this.ts + this.privateKey + this.publicKey;
-  private hash = md5( this.stringToHash );
-  private marvelSearchCategory = "";
-  private marvelAPIQueryString = "";
+  private hash = md5( this.ts + this.privateKey + this.publicKey );
   private marvelAPIBase = 'https://gateway.marvel.com:443/v1/public/';
-  private tsString = "?ts=" + this.ts;
-  private apiKeyString = "&apikey=" + this.publicKey;
-  private hashString = "&hash=" + this.hash;
-
+  
   /**
    * Handle Http operation that failed.
    * Let the app continue.
@@ -50,14 +44,9 @@ export class MarvelApiCallService {
   }
 
   getCharacters(): Observable<Character[]> {
-    this.marvelSearchCategory = "characters";    
-    this.marvelAPIQueryString = this.marvelAPIBase + 
-      this.marvelSearchCategory + 
-      this.tsString + 
-      this.apiKeyString + 
-      this.hashString;
+    let marvelAPIQueryString = `${ this.marvelAPIBase }characters?ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
 
-    return this.http.get<any>(this.marvelAPIQueryString)
+    return this.http.get<any>(marvelAPIQueryString)
       .pipe(
         tap( payload => console.log('fetched characterS data is ', payload), ),
         map( payload => payload.data.results ),
@@ -67,14 +56,9 @@ export class MarvelApiCallService {
   }
 
   getCharacter( id: number ): Observable<Character> {
-    this.marvelSearchCategory = "characters" + "/" + id;
-    this.marvelAPIQueryString = this.marvelAPIBase + 
-      this.marvelSearchCategory + 
-      this.tsString + 
-      this.apiKeyString + 
-      this.hashString;
+    let marvelAPIQueryString = `${ this.marvelAPIBase }characters/${ id }?ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
 
-    return this.http.get<any>(this.marvelAPIQueryString)
+    return this.http.get<any>(marvelAPIQueryString)
       .pipe(
         tap( payload => console.log('fetched character data is ', payload), ),
         map( payload => payload.data.results[0] ),         
