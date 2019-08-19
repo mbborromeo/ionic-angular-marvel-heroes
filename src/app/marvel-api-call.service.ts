@@ -34,6 +34,9 @@ export class MarvelApiCallService {
   private apiKeyString = "&apikey=" + this.publicKey;
   private hashString = "&hash=" + this.hash;
 
+  //Variables for characters, character
+  private characters: Observable<Character[]>;
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
@@ -49,7 +52,7 @@ export class MarvelApiCallService {
     };
   }
 
-  getCharacters(): Observable<Character[]> {
+  getCharacters(): Observable<Character[]> { //Observable<any>
 
     this.marvelSearchCategory = "characters";    
     this.marvelAPIQueryString = this.marvelAPIBase + 
@@ -58,12 +61,19 @@ export class MarvelApiCallService {
       this.apiKeyString + 
       this.hashString;
 
-    return this.http.get<any>(this.marvelAPIQueryString) //Character[], MarvelResponse
+    this.characters = this.http.get<any>(this.marvelAPIQueryString)
       .pipe(
-        tap( r => console.log('fetched characterS data is ', r), ),        
-        //map( r => r.data.results ),
-        catchError(this.handleError<Character[]>('getCharacters', []))
-      );
+        tap( r => console.log('fetched characterS data is ', r), ),
+        map( r => r.data.results ),
+        catchError(this.handleError<Character[]>('getCharacters', [])
+      )
+    );
+
+    if( this.characters === undefined) {
+      console.log("characters UNDEFINED");      
+    }
+
+    return this.characters;
   }
 
   getCharacter( id: number ): Observable<Character> {

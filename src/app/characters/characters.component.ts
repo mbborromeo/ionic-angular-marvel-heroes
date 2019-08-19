@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from '../character/character';
-import { CharactersService } from './characters.service';
+import { MarvelApiCallService } from '../marvel-api-call.service';
 
 @Component({
   selector: 'app-characters',
@@ -11,14 +11,13 @@ export class CharactersComponent implements OnInit {
   characters: Character[];
   //private loading: boolean = true;
   
-  constructor( private charactersService: CharactersService ) { }
+  constructor( private charactersService: MarvelApiCallService ) { }
 
-  getCharacters(): void {
-    
+  getCharacters(): void {    
     // Create observer object
     const myObserver = {
       next: (payload) => {
-        this.characters = payload.data.results;
+        this.characters = payload;
       },
       error: (err) => console.error('Observer got an error: ' + err),
       complete: () => console.log("this.characters when subscribe complete: ", this.characters),
