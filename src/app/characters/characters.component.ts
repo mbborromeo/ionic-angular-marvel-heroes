@@ -10,13 +10,14 @@ import { MarvelApiCallService } from '../marvel-api-call.service';
 })
 export class CharactersComponent implements OnInit {
   characters: Character[];
-  //private loading: boolean = true;
+  private loading: boolean = false;
   
   constructor( private charactersService: MarvelApiCallService ) { }
 
   getCharacters(): void {    
     //object to help debug subscribe
     this.characters = []; //reset    
+    this.loading = true;
 
     const myObserver = {
       next: (data) => {
@@ -27,7 +28,10 @@ export class CharactersComponent implements OnInit {
         }
       },
       error: (err) => console.error('Observer got an error: ' + err),
-      complete: () => console.log("this.characters when subscribe complete: ", this.characters),
+      complete: () => {
+        console.log("this.characters when getCharacters complete: ", this.characters);
+        this.loading = false;
+      },
     };
 
     this.charactersService.getCharacters()      
@@ -36,7 +40,7 @@ export class CharactersComponent implements OnInit {
 
   searchCharacters( name: string ): void {
     this.characters = []; //reset
-    console.log("chars.component: searchChars(name) name is: ", name);
+    this.loading = true;
 
     const myObserver = {
       next: (data) => {
@@ -47,7 +51,10 @@ export class CharactersComponent implements OnInit {
         }
       },
       error: (err) => console.error('Observer got an error: ' + err),
-      complete: () => console.log("this.characters when subscribe complete: ", this.characters),
+      complete: () => {
+        console.log("this.characters when searchCharacters complete: ", this.characters);
+        this.loading = false;    
+      },
     };
 
     this.charactersService.searchCharacters( name )      
@@ -56,8 +63,6 @@ export class CharactersComponent implements OnInit {
 
   clearSearch(): void {
     //reset search input
-    //this.searchInput.nativeElement.value = '';
-    //this.searchInput = undefined;
 
     this.getCharacters();
   }

@@ -1,20 +1,22 @@
 <div class="ion-padding">
   <h1>Characters</h1>
-
+  
   <a routerLink="/home">&laquo; Back to home</a>
   <br />
-
-  <ion-searchbar placeholder="Search characters" #searchInput></ion-searchbar>
+  
+  <ion-searchbar placeholder="Search characters" #searchInput (ionClear)="clearSearch()"></ion-searchbar>
   <ion-button (click)="searchCharacters(searchInput.value)">Search</ion-button>
-  <ion-button (click)="clearSearch()">Reset</ion-button>
-
   <br />
 
-  <div *ngIf="!characters">
+  <div *ngIf="characters.length===0 && loading">
     loading...<br />
   </div>
 
-  <div *ngIf="characters && characters.length">  
+  <div *ngIf="characters.length===0 && !loading">
+    no characters found<br />
+  </div>
+
+  <div *ngIf="characters.length>0 && !loading">  
     <ion-list>
       <ion-item *ngFor="let hero of characters">
         <ion-label><a routerLink="/character/{{ hero.id }}">{{ hero.name }}</a></ion-label>
