@@ -14,7 +14,7 @@ export class CharacterComponent implements OnInit {
 
   id: number;
   private character: Observable<Character>;
-  private loading: boolean = true;
+  private loading: boolean = false;
   
   /*
   confirmID: number;
@@ -30,6 +30,7 @@ export class CharacterComponent implements OnInit {
 
   getCharacter(): void {
     this.id = +this.route.snapshot.paramMap.get('id'); //get ID from URL
+    this.loading = true;
 
     // Create observer object
     const myObserver = {

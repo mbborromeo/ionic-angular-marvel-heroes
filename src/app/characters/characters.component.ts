@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup } from '@angular/forms';
 import { Character } from '../character/character';
 import { MarvelApiCallService } from '../marvel-api-call.service';
 
@@ -9,12 +10,15 @@ import { MarvelApiCallService } from '../marvel-api-call.service';
 })
 export class CharactersComponent implements OnInit {
   characters: Character[];
-  //private loading: boolean = true;
+  private loading: boolean = false;
   
   constructor( private charactersService: MarvelApiCallService ) { }
 
   getCharacters(): void {    
     //object to help debug subscribe
+    this.characters = []; //reset    
+    this.loading = true;
+
     const myObserver = {
       next: (data) => {
         this.characters = data;
@@ -24,11 +28,43 @@ export class CharactersComponent implements OnInit {
         }
       },
       error: (err) => console.error('Observer got an error: ' + err),
-      complete: () => console.log("this.characters when subscribe complete: ", this.characters),
+      complete: () => {
+        console.log("this.characters when getCharacters complete: ", this.characters);
+        this.loading = false;
+      },
     };
 
     this.charactersService.getCharacters()      
       .subscribe( myObserver );
+  }
+
+  searchCharacters( name: string ): void {
+    this.characters = []; //reset
+    this.loading = true;
+
+    const myObserver = {
+      next: (data) => {
+        this.characters = data;
+
+        if( this.characters === undefined) {
+          console.log("characters UNDEFINED");      
+        }
+      },
+      error: (err) => console.error('Observer got an error: ' + err),
+      complete: () => {
+        console.log("this.characters when searchCharacters complete: ", this.characters);
+        this.loading = false;    
+      },
+    };
+
+    this.charactersService.searchCharacters( name )      
+      .subscribe( myObserver );
+  }
+
+  clearSearch(): void {
+    //reset search input
+
+    this.getCharacters();
   }
 
   ngOnInit() {

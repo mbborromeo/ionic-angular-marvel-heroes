@@ -66,4 +66,16 @@ export class MarvelApiCallService {
       )
     );
   }
+
+  searchCharacters( name: string ): Observable<Character[]> {
+    let marvelAPIQueryString = `${ this.marvelAPIBase }characters?nameStartsWith=${ name }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
+
+    return this.http.get<any>(marvelAPIQueryString)
+      .pipe(
+        tap( payload => console.log('fetched searchCharacters data is ', payload), ),
+        map( payload => payload.data.results ),
+        catchError(this.handleError<Character[]>('searchCharacters', [])
+      )
+    );
+  }
 }
