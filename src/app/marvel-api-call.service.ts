@@ -34,9 +34,6 @@ export class MarvelApiCallService {
   private apiKeyString = "&apikey=" + this.publicKey;
   private hashString = "&hash=" + this.hash;
 
-  //Variables for characters, character
-  private characters: Observable<Character[]>;
-
   /**
    * Handle Http operation that failed.
    * Let the app continue.
@@ -52,8 +49,7 @@ export class MarvelApiCallService {
     };
   }
 
-  getCharacters(): Observable<Character[]> { //Observable<any>
-
+  getCharacters(): Observable<Character[]> {
     this.marvelSearchCategory = "characters";    
     this.marvelAPIQueryString = this.marvelAPIBase + 
       this.marvelSearchCategory + 
@@ -61,24 +57,16 @@ export class MarvelApiCallService {
       this.apiKeyString + 
       this.hashString;
 
-    this.characters = this.http.get<any>(this.marvelAPIQueryString)
+    return this.http.get<any>(this.marvelAPIQueryString)
       .pipe(
-        tap( r => console.log('fetched characterS data is ', r), ),
-        map( r => r.data.results ),
+        tap( payload => console.log('fetched characterS data is ', payload), ),
+        map( payload => payload.data.results ),
         catchError(this.handleError<Character[]>('getCharacters', [])
       )
     );
-
-    if( this.characters === undefined) {
-      console.log("characters UNDEFINED");      
-    }
-
-    return this.characters;
   }
 
   getCharacter( id: number ): Observable<Character> {
-    console.log("marvelAPICallService: getCharacter(id) ID is: " + id);
-
     this.marvelSearchCategory = "characters" + "/" + id;
     this.marvelAPIQueryString = this.marvelAPIBase + 
       this.marvelSearchCategory + 
@@ -88,8 +76,10 @@ export class MarvelApiCallService {
 
     return this.http.get<any>(this.marvelAPIQueryString)
       .pipe(
-        tap( r => console.log('fetched character data is ', r), ),                
-        catchError(this.handleError<Character>('getCharacter'))
-      );
+        tap( payload => console.log('fetched character data is ', payload), ),
+        map( payload => payload.data.results[0] ),         
+        catchError(this.handleError<Character>('getCharacter')
+      )
+    );
   }
 }

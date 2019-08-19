@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { CharacterService } from './character.service';
+import { MarvelApiCallService } from '../marvel-api-call.service';
 import { Observable, of } from 'rxjs';
 import { Character } from '../character/character';
 
@@ -25,34 +25,25 @@ export class CharacterComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private characterService: CharacterService
+    private characterService: MarvelApiCallService
   ) { }
 
   getCharacter(): void {
-    console.log("character.component: getCharacter()");
     this.id = +this.route.snapshot.paramMap.get('id'); //get ID from URL
 
     // Create observer object
     const myObserver = {
-      next: (payload) => {        
-        console.log('Character Observer payload ', payload);
-        console.log('Character Observer payload.data ', payload.data);
-        console.log('Character Observer payload.data.results ', payload.data.results);
-        console.log('Character Observer payload.data.results[0] ', payload.data.results[0]);
-        this.character = payload.data.results[0];
-        console.log("character.component: this.character inside subscribe is: ", this.character); 
+      next: (data) => {
+        this.character = data;
 
-        /*
-        console.log("character.component: this.character inside subscribe is NAME IS-----: ", this.character['name']); 
-        console.log("character.component: this.character inside subscribe is ID IS-----: ", this.character['id']);
-        this.name = payload.data.results[0].name;
-        this.confirmID = payload.data.results[0].id;
-        this.confirmDescription = payload.data.results[0].description;
-        */
+        if( this.character === undefined) {
+          console.log("character UNDEFINED");      
+        } 
       },
       error: (err) => console.error('Character Observer got an error: ' + err),
       complete: () => {         
-        this.loading = false;      
+        this.loading = false;
+        console.log("this.character when subscribe complete: ", this.character);
       },
     };
 

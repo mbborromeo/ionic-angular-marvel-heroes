@@ -7,6 +7,10 @@
   <div *ngIf="!character && loading">
     character is loading...<br />
   </div>
+
+  <div *ngIf="!character && !loading">
+    character not found<br />
+  </div>
   
   <div *ngIf="character && !loading">    
     <p>

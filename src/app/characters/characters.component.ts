@@ -14,10 +14,14 @@ export class CharactersComponent implements OnInit {
   constructor( private charactersService: MarvelApiCallService ) { }
 
   getCharacters(): void {    
-    // Create observer object
+    //object to help debug subscribe
     const myObserver = {
-      next: (payload) => {
-        this.characters = payload;
+      next: (data) => {
+        this.characters = data;
+
+        if( this.characters === undefined) {
+          console.log("characters UNDEFINED");      
+        }
       },
       error: (err) => console.error('Observer got an error: ' + err),
       complete: () => console.log("this.characters when subscribe complete: ", this.characters),
@@ -25,12 +29,6 @@ export class CharactersComponent implements OnInit {
 
     this.charactersService.getCharacters()      
       .subscribe( myObserver );
-      /*
-      .subscribe( payload => {
-          this.characters = payload.data.results;
-        }
-      );
-      */      
   }
 
   ngOnInit() {
