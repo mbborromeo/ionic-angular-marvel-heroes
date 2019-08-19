@@ -30,14 +30,11 @@ export class CharacterService {
   }
 
   getCharacter( id: number ): Observable<any> {
-    console.log("character.service: getCharacter( id ) ID is: " + id);
+    this.character = this.marvelAPI.getCharacter( id );  
 
     if( this.character === undefined) {
-      console.log("character UNDEFINED");
-      this.character = this.marvelAPI.getCharacter( id );      
-    }
-
-    console.log("character value: ", this.character);
+      console.log("character UNDEFINED");      
+    }    
 
     return this.character;
   }

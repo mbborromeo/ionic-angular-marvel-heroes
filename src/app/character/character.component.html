@@ -1,7 +1,7 @@
 <div class="ion-padding">
   <h1>Character</h1>
 
-  <a routerLink="/characters">&laquo; Back to characters</a>
+  <a routerLink="/characters">&laquo; Back to characters</a><!-- (click)="goBack()" -->
   <br />
 
   <div *ngIf="!character && loading">
@@ -10,7 +10,7 @@
   
   <div *ngIf="character && !loading">    
     <p>
-      character ID from URL is correct: {{ id }}
+      character ID: {{ id }}
     </p>
     <p>
       character name is: {{ character.name }}
@@ -19,21 +19,7 @@
       character description is: {{ character.description }}
     </p>
 
-    <hr />
-
-    <p>
-      character ID from Payload is incorrect: {{ confirmID }}
-    </p>   
-    <p>
-      character name from Payload is: {{ name }}
-    </p>
-    <p>
-      character description from Payload is: {{ description }}
-    </p>    
-    
-
-    <img src="{{ character.thumbnail.path + '.' + character.thumbnail.extension }}" />
-    
+    <img src="{{ character.thumbnail.path + '.' + character.thumbnail.extension }}" />    
   </div>
       
   <br />

@@ -29,15 +29,13 @@ export class CharactersService {
     };
   }
 
-  getCharacters(): Observable<any> { //Character[], Promise<any>
-    console.log("characters.service: getCharacters()");
+  getCharacters(): Observable<any> { //Character[]
+    console.log("characters.service: getCharacters() this.characters are: ", this.characters);
 
     if( this.characters === undefined) {
       console.log("characters UNDEFINED");
       this.characters = this.marvelAPI.getCharacters();      
     }
-
-    console.log("characters value: ", this.characters);
 
     return this.characters;
   }
