@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Character } from './character/character';
+import { Comic } from './comic/comic';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import md5 from 'crypto-js/md5';
@@ -77,5 +78,17 @@ export class MarvelApiCallService {
         catchError(this.handleError<Character[]>('searchCharacters', [])
       )
     );
+  }
+
+  getComicsOfCharacter( characterID: number ): Observable<Comic[]> {
+    //https://gateway.marvel.com:443/v1/public/characters/1009149/comics?
+    
+    return ;
+  }
+
+  getComic( comicID: number ): Observable<Comic> {
+    //https://gateway.marvel.com:443/v1/public/comics/2539?
+    //console.log("getComic() - comic ID is: ", comicID);
+    return ;
   }
 }

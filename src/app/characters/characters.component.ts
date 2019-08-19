@@ -12,7 +12,7 @@ export class CharactersComponent implements OnInit {
   characters: Character[];
   private loading: boolean = false;
   
-  constructor( private charactersService: MarvelApiCallService ) { }
+  constructor( private marvelService: MarvelApiCallService ) { }
 
   getCharacters(): void {    
     //object to help debug subscribe
@@ -34,7 +34,7 @@ export class CharactersComponent implements OnInit {
       },
     };
 
-    this.charactersService.getCharacters()      
+    this.marvelService.getCharacters()      
       .subscribe( myObserver );
   }
 
@@ -57,7 +57,7 @@ export class CharactersComponent implements OnInit {
       },
     };
 
-    this.charactersService.searchCharacters( name )      
+    this.marvelService.searchCharacters( name )      
       .subscribe( myObserver );
   }
 

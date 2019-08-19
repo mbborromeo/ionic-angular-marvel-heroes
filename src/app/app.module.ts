@@ -11,12 +11,16 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CharactersComponent } from './characters/characters.component';
 import { CharacterComponent } from './character/character.component';
+import { ComicsComponent } from './comics/comics.component';
+import { ComicComponent } from './comic/comic.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharactersComponent,
-    CharacterComponent
+    CharacterComponent,
+    ComicsComponent,
+    ComicComponent
   ],
   entryComponents: [],
   imports: [

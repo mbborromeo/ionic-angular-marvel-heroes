@@ -17,12 +17,16 @@
       <b>{{ character.name }}</b>
     </p>    
     <p>
-      ID: {{ id }}
+      ID: {{ character.id }}
     </p>    
     <p>
       Description: {{ character.description }}
     </p>
-
+    
+    <!-- (click)="getComicsOfCharacter( character.id )" Don't need anymore -->
+    <!-- /characters/{{ character.id }}/comics/ DOES NOT WORK -->
+    <ion-button routerLink="/comics-character-in/{{ character.id }}">View comics {{ character.name }} appears in</ion-button>
+    
     <img src="{{ character.thumbnail.path + '.' + character.thumbnail.extension }}" />    
   </div>
       

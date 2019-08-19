@@ -12,7 +12,6 @@ import { Character } from '../character/character';
 })
 export class CharacterComponent implements OnInit {
 
-  id: number;
   private character: Observable<Character>;
   private loading: boolean = false;
   
@@ -25,11 +24,11 @@ export class CharacterComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private characterService: MarvelApiCallService
+    private marvelService: MarvelApiCallService
   ) { }
 
   getCharacter(): void {
-    this.id = +this.route.snapshot.paramMap.get('id'); //get ID from URL
+    let id = +this.route.snapshot.paramMap.get('id'); //get ID from URL
     this.loading = true;
 
     // Create observer object
@@ -48,7 +47,7 @@ export class CharacterComponent implements OnInit {
       },
     };
 
-    this.characterService.getCharacter( this.id )      
+    this.marvelService.getCharacter( id )      
       .subscribe( myObserver );
   }
 
