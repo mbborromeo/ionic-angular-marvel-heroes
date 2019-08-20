@@ -101,7 +101,7 @@ export class CharactersComponent implements OnInit {
       }
       if( offset ) {
         this.marvelService.searchCharacters( name )      
-          .subscribe( myObserver, offset );
+          .subscribe( myObserver ); //, offset
       }
 
     }

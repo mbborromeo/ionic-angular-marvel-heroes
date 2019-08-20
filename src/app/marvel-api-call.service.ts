@@ -84,9 +84,11 @@ export class MarvelApiCallService {
     if( !offset ){
       marvelAPIQueryString = `${ this.marvelAPIBase }characters?nameStartsWith=${ name }&limit=${ this.limit }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
     }
+    /*
     if( offset ) {
       marvelAPIQueryString = `${ this.marvelAPIBase }characters?nameStartsWith=${ name }&limit=${ this.limit }&offset=${ offset }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
     }
+    */
 
     return this.http.get<any>(marvelAPIQueryString)
       .pipe(
