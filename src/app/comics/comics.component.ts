@@ -3,6 +3,7 @@ import { Comic } from '../comic/comic';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MarvelApiCallService } from '../marvel-api-call.service';
+import { MarvelData } from '../marvel-data';
 
 @Component({
   selector: 'app-comics',
@@ -13,7 +14,8 @@ export class ComicsComponent implements OnInit {
   private characterID: number;
   private characterName: string; //how to get this?
   
-  private comics: Comic[] = [];
+  //private comics: Comic[] = [];
+  private marvelData: MarvelData;
   private loading: boolean = false;
   private loadingName: boolean = false;
 
@@ -22,7 +24,6 @@ export class ComicsComponent implements OnInit {
     private location: Location,
     private marvelService: MarvelApiCallService
   ) { }
-
   
   getComicsOfCharacter(): void {
     this.characterID = +this.route.snapshot.paramMap.get('id'); //get ID from URL
@@ -30,16 +31,16 @@ export class ComicsComponent implements OnInit {
     console.log("comics.component: getComicsOfCharacter() - character ID is: ", this.characterID);
 
     const myObserver = {
-      next: (data) => {
-        this.comics = data;
+      next: (res) => {
+        this.marvelData = res; //res.data.results
 
-        if( this.comics === undefined) {
+        if( this.marvelData === undefined) {
           console.log("comics UNDEFINED");      
         }
       },
       error: (err) => console.error('Observer getComicsOfCharacter got an error: ' + err),
       complete: () => {
-        console.log("this.comics when getComicsOfCharacter complete: ", this.comics);
+        console.log("this.marvelData when getComicsOfCharacter complete: ", this.marvelData);
         this.loading = false;    
       },
     };
@@ -54,8 +55,8 @@ export class ComicsComponent implements OnInit {
 
     // Create observer object
     const myObserver = {
-      next: (data) => {
-        this.characterName = data.name; //filter out the name only
+      next: (res) => {
+        this.characterName = res.name; //filter out the name only
 
         if( this.characterName === undefined) {
           console.log("characterName UNDEFINED");      

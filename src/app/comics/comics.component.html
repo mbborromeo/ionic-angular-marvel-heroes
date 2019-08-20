@@ -9,17 +9,17 @@
   <a routerLink="/character/{{ characterID }}">&laquo; Back to character</a>
   <br />
 
-  <div *ngIf="comics.length===0 && loading">
+  <div *ngIf="loading"><!-- marvelData.data.results.length===0 &&  -->
     loading...<br />
   </div>
 
-  <div *ngIf="comics.length===0 && !loading">
+  <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length===0 && !loading">
     no comics found<br />
   </div>
 
-  <div *ngIf="comics.length>0 && !loading"> 
+  <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length>0 && !loading"> 
     <ion-list>
-      <ion-item *ngFor="let comic of comics">
+      <ion-item *ngFor="let comic of marvelData.data.results">
         <ion-label><a routerLink="/comic/{{ comic.id }}">{{ comic.title }}</a></ion-label>
       </ion-item>
     </ion-list>

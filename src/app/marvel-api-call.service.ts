@@ -54,7 +54,6 @@ export class MarvelApiCallService {
     return this.http.get<any>(marvelAPIQueryString)
       .pipe(
         tap( payload => console.log('fetched characterS data is ', payload), ),
-        //map( payload => payload.data.results ),
         catchError(this.handleError<Character[]>('getCharacters', [])
       )
     );
@@ -78,7 +77,6 @@ export class MarvelApiCallService {
     return this.http.get<any>(marvelAPIQueryString)
       .pipe(
         tap( payload => console.log('fetched searchCharacters data is ', payload), ),
-        //map( payload => payload.data.results ),
         catchError(this.handleError<Character[]>('searchCharacters', [])
       )
     );
@@ -90,7 +88,7 @@ export class MarvelApiCallService {
     return this.http.get<any>(marvelAPIQueryString)
       .pipe(
         tap( payload => console.log('fetched getComicsOfCharacter data is ', payload), ),
-        map( payload => payload.data.results ),
+        //map( payload => payload.data.results ),
         catchError(this.handleError<Comic[]>('getComicsOfCharacter', [])
       )
     );
