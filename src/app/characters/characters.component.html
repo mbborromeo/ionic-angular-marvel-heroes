@@ -16,7 +16,7 @@
     loading...<br />
   </div>
 
-  <div *ngIf="marvelData && marvelData.data && marvelData.data.results.length===0 && !loading">
+  <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length===0 && !loading">
     no characters found<br />
   </div>
 
