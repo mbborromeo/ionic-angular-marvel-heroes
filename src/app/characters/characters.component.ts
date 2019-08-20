@@ -39,12 +39,10 @@ export class CharactersComponent implements OnInit {
 
   searchCharacters( name: string ): void {
     if( name ) {
-      this.marvelData.data.results = []; //reset
       this.loading = true;
 
       const myObserver = {
         next: (res) => {
-          //this.marvelData.data.results = res;
           this.marvelData = res;
 
           if( this.marvelData.data.results === undefined) {
