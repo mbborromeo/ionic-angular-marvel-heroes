@@ -41,6 +41,7 @@ export class PageButtonsComponent implements OnInit {
 
     //this.marvelData = this.bindedMarvelData;
     //this.marvelData.data.total = 99; //this.bindedMarvelData.data.total;    
+    /*
     this.marvelData = {
       data: {
           count: 0,
@@ -62,7 +63,9 @@ export class PageButtonsComponent implements OnInit {
       },
       code: 0,
     };
+    */
   }
+
 
   constructor() { }
 

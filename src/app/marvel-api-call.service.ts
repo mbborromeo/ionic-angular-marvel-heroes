@@ -55,15 +55,7 @@ export class MarvelApiCallService {
       marvelAPIQueryString = `${ this.marvelAPIBase }characters?limit=${ this.limit }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
     }
     if( offset ){
-      /*
-      marvelAPIQueryString = this.marvelAPIBase + 
-        "characters?limit=" +  this.limit +      
-        "&offset" + offset +      
-        "&ts=" + this.ts +
-        "&apikey=" + this.publicKey +
-        "&hash=" + this.hash;
-      */
-      marvelAPIQueryString = `${ this.marvelAPIBase }characters?offset=${ offset }&limit=${ this.limit }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
+      marvelAPIQueryString = `${ this.marvelAPIBase }characters?limit=${ this.limit }&offset=${ offset }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
     }
 
     return this.http.get<any>(marvelAPIQueryString)
@@ -86,8 +78,15 @@ export class MarvelApiCallService {
     );
   }
 
-  searchCharacters( name: string ): Observable<Character[]> {    
-    let marvelAPIQueryString = `${ this.marvelAPIBase }characters?nameStartsWith=${ name }&limit=${ this.limit }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
+  searchCharacters( name: string, offset?: number ): Observable<Character[]> {    
+    let marvelAPIQueryString;
+    
+    if( !offset ){
+      marvelAPIQueryString = `${ this.marvelAPIBase }characters?nameStartsWith=${ name }&limit=${ this.limit }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
+    }
+    if( offset ) {
+      marvelAPIQueryString = `${ this.marvelAPIBase }characters?nameStartsWith=${ name }&limit=${ this.limit }&offset=${ offset }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
+    }
 
     return this.http.get<any>(marvelAPIQueryString)
       .pipe(
