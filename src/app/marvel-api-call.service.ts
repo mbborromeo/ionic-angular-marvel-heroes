@@ -94,8 +94,6 @@ export class MarvelApiCallService {
   }
 
   getComic( id: number ): Observable<Comic> {
-    //https://gateway.marvel.com:443/v1/public/comics/2539?
-    //console.log("getComic() - comic ID is: ", comicID);
     let marvelAPIQueryString = `${ this.marvelAPIBase }comics/${ id }?ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
 
     return this.http.get<any>(marvelAPIQueryString)
