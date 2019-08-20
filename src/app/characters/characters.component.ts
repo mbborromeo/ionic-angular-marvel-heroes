@@ -67,7 +67,8 @@ export class CharactersComponent implements OnInit {
     }
   }
 
-  searchCharacters( name: string ): void {
+  /* include optional params for next and previous */
+  searchCharacters( name: string, offset?: number ): void {
     if( name ) {
       this.loading = true;
 
@@ -94,8 +95,15 @@ export class CharactersComponent implements OnInit {
         },
       };
 
-      this.marvelService.searchCharacters( name )      
-        .subscribe( myObserver );
+      if( !offset ) {
+        this.marvelService.searchCharacters( name )      
+          .subscribe( myObserver );
+      }
+      if( offset ) {
+        this.marvelService.searchCharacters( name )      
+          .subscribe( myObserver, offset );
+      }
+
     }
     else {
       console.log("search term is blank!");
