@@ -3,24 +3,30 @@
   
   <a routerLink="/home">&laquo; Back to home</a>
   <br />
+
+  <!-- Previous/Next buttons -->
+  characters.component.html: 
+  <app-page-buttons [bindedMarvelData]="marvelData"></app-page-buttons>
   
   <ion-searchbar placeholder="Search characters" #searchInput (ionClear)="clearSearch()"></ion-searchbar>
   <ion-button (click)="searchCharacters(searchInput.value)">Search</ion-button>
   <br />
 
-  <div *ngIf="characters.length===0 && loading">
+  <div *ngIf="!marvelData && loading">
     loading...<br />
   </div>
 
-  <div *ngIf="characters.length===0 && !loading">
+  <div *ngIf="marvelData && marvelData.data && marvelData.data.results.length===0 && !loading">
     no characters found<br />
   </div>
 
-  <div *ngIf="characters.length>0 && !loading">  
+  <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length>0 && !loading">  
     <ion-list>
-      <ion-item *ngFor="let character of characters">
+      <ion-item *ngFor="let character of marvelData.data.results">
         <ion-label><a routerLink="/character/{{ character.id }}">{{ character.name }}</a></ion-label>
       </ion-item>
     </ion-list>
   </div>  
+
+  
 </div>

@@ -1,0 +1,14 @@
+<p *ngIf="!bindedMarvelData">
+  loading...
+</p>
+
+<p *ngIf="bindedMarvelData">
+  total: {{ bindedMarvelData.data.total }} <br />
+  offset: {{ bindedMarvelData.data.offset }} <br />
+  code: {{ bindedMarvelData.code }} <br />
+  count: {{ bindedMarvelData.data.count }}
+  <br />
+  &laquo;Previous 
+  page # of ## 
+  Next&raquo;
+</p>

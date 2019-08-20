@@ -28,6 +28,9 @@ export class MarvelApiCallService {
   private ts = new Date().getTime();
   private hash = md5( this.ts + this.privateKey + this.publicKey );
   private marvelAPIBase = 'https://gateway.marvel.com:443/v1/public/';
+  
+  private limit: number = 20; //limit search results
+  private pageOffset: number = 0;
   //private authSign;
   
   /**
@@ -46,12 +49,12 @@ export class MarvelApiCallService {
   }
 
   getCharacters(): Observable<Character[]> {
-    let marvelAPIQueryString = `${ this.marvelAPIBase }characters?ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
+    let marvelAPIQueryString = `${ this.marvelAPIBase }characters?limit=${ this.limit }&offset=${ this.pageOffset }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
 
     return this.http.get<any>(marvelAPIQueryString)
       .pipe(
         tap( payload => console.log('fetched characterS data is ', payload), ),
-        map( payload => payload.data.results ),
+        //map( payload => payload.data.results ),
         catchError(this.handleError<Character[]>('getCharacters', [])
       )
     );
@@ -69,8 +72,8 @@ export class MarvelApiCallService {
     );
   }
 
-  searchCharacters( name: string ): Observable<Character[]> {
-    let marvelAPIQueryString = `${ this.marvelAPIBase }characters?nameStartsWith=${ name }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
+  searchCharacters( name: string ): Observable<Character[]> {    
+    let marvelAPIQueryString = `${ this.marvelAPIBase }characters?nameStartsWith=${ name }&limit=${ this.limit }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
 
     return this.http.get<any>(marvelAPIQueryString)
       .pipe(
@@ -82,7 +85,7 @@ export class MarvelApiCallService {
   }
 
   getComicsOfCharacter( id: number ): Observable<Comic[]> {
-    let marvelAPIQueryString = `${ this.marvelAPIBase }characters/${ id }/comics?ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
+    let marvelAPIQueryString = `${ this.marvelAPIBase }characters/${ id }/comics?limit=${ this.limit }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
     
     return this.http.get<any>(marvelAPIQueryString)
       .pipe(
