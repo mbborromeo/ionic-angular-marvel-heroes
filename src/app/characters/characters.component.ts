@@ -31,12 +31,12 @@ export class CharactersComponent implements OnInit {
     const myObserver = {
       next: (res) => {
         this.marvelData = res;
+
         this.totalItemsReturned = res.data.total;
         this.offsetIndex = res.data.offset;
         this.countOfItemsDisplayed = res.data.count;
         this.itemsToDisplayLimit = res.data.limit;
         this.offsetDistance = this.itemsToDisplayLimit;
-
         this.pageNumber = Math.floor(this.offsetIndex / this.offsetDistance) + 1;
         this.pagesTotal = Math.floor(this.totalItemsReturned / this.offsetDistance) + 1;
 
@@ -74,6 +74,14 @@ export class CharactersComponent implements OnInit {
       const myObserver = {
         next: (res) => {
           this.marvelData = res;
+
+          this.totalItemsReturned = res.data.total;
+          this.offsetIndex = res.data.offset;
+          this.countOfItemsDisplayed = res.data.count;
+          this.itemsToDisplayLimit = res.data.limit;
+          this.offsetDistance = this.itemsToDisplayLimit;
+          this.pageNumber = Math.floor(this.offsetIndex / this.offsetDistance) + 1;
+          this.pagesTotal = Math.floor(this.totalItemsReturned / this.offsetDistance) + 1;
 
           if( this.marvelData.data.results === undefined) {
             console.log("characters UNDEFINED");      
@@ -117,8 +125,7 @@ export class CharactersComponent implements OnInit {
   }
 
   clearSearch(): void {
-    //reset search input
-
+    //reset search input if needed
     this.getCharacters();
   }
 
