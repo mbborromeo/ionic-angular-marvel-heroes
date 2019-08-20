@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from '../character/character';
+import { MarvelData } from '../marvel-data';
 import { MarvelApiCallService } from '../marvel-api-call.service';
 
 @Component({
@@ -8,27 +9,26 @@ import { MarvelApiCallService } from '../marvel-api-call.service';
   styleUrls: ['./characters.component.scss'],
 })
 export class CharactersComponent implements OnInit {
-  private characters: Character[]; //Observable<Character[]>
   private loading: boolean = false;
+  private marvelData: MarvelData;
   
   constructor( private marvelService: MarvelApiCallService ) { }
 
   getCharacters(): void {    
-    //object to help debug subscribe
-    this.characters = []; //reset    
     this.loading = true;
 
+    //object to help debug subscribe
     const myObserver = {
-      next: (data) => {
-        this.characters = data;
+      next: (res) => {
+        this.marvelData = res;        
 
-        if( this.characters === undefined) {
+        if( this.marvelData.data.results === undefined) {
           console.log("characters UNDEFINED");      
         }
       },
       error: (err) => console.error('Observer got an error: ' + err),
       complete: () => {
-        console.log("this.characters when getCharacters complete: ", this.characters);
+        console.log("when getCharacters complete this.marvelData: ", this.marvelData);        
         this.loading = false;
       },
     };
@@ -38,26 +38,30 @@ export class CharactersComponent implements OnInit {
   }
 
   searchCharacters( name: string ): void {
-    this.characters = []; //reset
-    this.loading = true;
+    if( name ) {
+      this.loading = true;
 
-    const myObserver = {
-      next: (data) => {
-        this.characters = data;
+      const myObserver = {
+        next: (res) => {
+          this.marvelData = res;
 
-        if( this.characters === undefined) {
-          console.log("characters UNDEFINED");      
-        }
-      },
-      error: (err) => console.error('Observer got an error: ' + err),
-      complete: () => {
-        console.log("this.characters when searchCharacters complete: ", this.characters);
-        this.loading = false;    
-      },
-    };
+          if( this.marvelData.data.results === undefined) {
+            console.log("characters UNDEFINED");      
+          }
+        },
+        error: (err) => console.error('Observer got an error: ' + err),
+        complete: () => {
+          console.log("when searchCharacters complete this.marvelData  ", this.marvelData);
+          this.loading = false;    
+        },
+      };
 
-    this.marvelService.searchCharacters( name )      
-      .subscribe( myObserver );
+      this.marvelService.searchCharacters( name )      
+        .subscribe( myObserver );
+    }
+    else {
+      console.log("search term is blank!");
+    }
   }
 
   clearSearch(): void {
