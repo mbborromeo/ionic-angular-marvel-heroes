@@ -20,7 +20,8 @@ export class CharactersComponent implements OnInit {
     //object to help debug subscribe
     const myObserver = {
       next: (res) => {
-        this.marvelData = res;        
+        this.marvelData = res;       
+        console.log("---------CharsComponent this.marvelData: ", this.marvelData); 
 
         if( this.marvelData.data.results === undefined) {
           console.log("characters UNDEFINED");      

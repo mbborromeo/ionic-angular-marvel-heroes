@@ -12,7 +12,7 @@ import { MarvelData } from '../marvel-data';
 })
 export class ComicsComponent implements OnInit {
   private characterID: number;
-  private characterName: string; //how to get this?
+  private characterName: string;
   
   //private comics: Comic[] = [];
   private marvelData: MarvelData;
