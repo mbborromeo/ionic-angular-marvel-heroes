@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup } from '@angular/forms';
 import { Character } from '../character/character';
 import { MarvelApiCallService } from '../marvel-api-call.service';
 
@@ -9,10 +8,10 @@ import { MarvelApiCallService } from '../marvel-api-call.service';
   styleUrls: ['./characters.component.scss'],
 })
 export class CharactersComponent implements OnInit {
-  characters: Character[];
+  private characters: Character[]; //Observable<Character[]>
   private loading: boolean = false;
   
-  constructor( private charactersService: MarvelApiCallService ) { }
+  constructor( private marvelService: MarvelApiCallService ) { }
 
   getCharacters(): void {    
     //object to help debug subscribe
@@ -34,7 +33,7 @@ export class CharactersComponent implements OnInit {
       },
     };
 
-    this.charactersService.getCharacters()      
+    this.marvelService.getCharacters()      
       .subscribe( myObserver );
   }
 
@@ -57,7 +56,7 @@ export class CharactersComponent implements OnInit {
       },
     };
 
-    this.charactersService.searchCharacters( name )      
+    this.marvelService.searchCharacters( name )      
       .subscribe( myObserver );
   }
 

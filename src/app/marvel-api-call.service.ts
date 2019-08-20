@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Character } from './character/character';
+import { Comic } from './comic/comic';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import md5 from 'crypto-js/md5';
@@ -27,6 +28,7 @@ export class MarvelApiCallService {
   private ts = new Date().getTime();
   private hash = md5( this.ts + this.privateKey + this.publicKey );
   private marvelAPIBase = 'https://gateway.marvel.com:443/v1/public/';
+  //private authSign;
   
   /**
    * Handle Http operation that failed.
@@ -75,6 +77,30 @@ export class MarvelApiCallService {
         tap( payload => console.log('fetched searchCharacters data is ', payload), ),
         map( payload => payload.data.results ),
         catchError(this.handleError<Character[]>('searchCharacters', [])
+      )
+    );
+  }
+
+  getComicsOfCharacter( id: number ): Observable<Comic[]> {
+    let marvelAPIQueryString = `${ this.marvelAPIBase }characters/${ id }/comics?ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
+    
+    return this.http.get<any>(marvelAPIQueryString)
+      .pipe(
+        tap( payload => console.log('fetched getComicsOfCharacter data is ', payload), ),
+        map( payload => payload.data.results ),
+        catchError(this.handleError<Comic[]>('getComicsOfCharacter', [])
+      )
+    );
+  }
+
+  getComic( id: number ): Observable<Comic> {
+    let marvelAPIQueryString = `${ this.marvelAPIBase }comics/${ id }?ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
+
+    return this.http.get<any>(marvelAPIQueryString)
+      .pipe(
+        tap( payload => console.log('fetched getComic data is ', payload), ),
+        map( payload => payload.data.results[0] ),
+        catchError(this.handleError<Comic>('getComic')
       )
     );
   }

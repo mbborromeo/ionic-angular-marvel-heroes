@@ -18,8 +18,8 @@
 
   <div *ngIf="characters.length>0 && !loading">  
     <ion-list>
-      <ion-item *ngFor="let hero of characters">
-        <ion-label><a routerLink="/character/{{ hero.id }}">{{ hero.name }}</a></ion-label>
+      <ion-item *ngFor="let character of characters">
+        <ion-label><a routerLink="/character/{{ character.id }}">{{ character.name }}</a></ion-label>
       </ion-item>
     </ion-list>
   </div>  

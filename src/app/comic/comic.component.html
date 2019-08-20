@@ -1,0 +1,25 @@
+<div class="ion-padding">
+    <a (click)="goBack()">&laquo; Back to comics</a>
+    <br />
+  
+    <div *ngIf="!comic && loading">
+      loading...<br />
+    </div>
+  
+    <div *ngIf="!comic && !loading">
+      comic not found<br />
+    </div>
+    
+    <div *ngIf="comic && !loading">      
+      <h1>
+        Comic: {{ '"' + comic.title + '"' }}
+      </h1>
+      <p>
+        Description:  {{ comic.description }}
+      </p>
+      <p>
+        Format:  {{ comic.format }}
+      </p>
+      <img src="{{ comic.thumbnail.path + '.' + comic.thumbnail.extension }}" />
+    </div>
+</div>
