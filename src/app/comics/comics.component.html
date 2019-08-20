@@ -1,9 +1,9 @@
 <div class="ion-padding">
   <h1>
-    Comics 
     <span *ngIf="characterName && !loadingName">
-      {{ characterName }} appear in
+      {{ characterName + ' ' }}
     </span>
+    Comics
   </h1>
 
   <a routerLink="/character/{{ characterID }}">&laquo; Back to character</a>

@@ -28,6 +28,7 @@ export class MarvelApiCallService {
   private ts = new Date().getTime();
   private hash = md5( this.ts + this.privateKey + this.publicKey );
   private marvelAPIBase = 'https://gateway.marvel.com:443/v1/public/';
+  //private authSign;
   
   /**
    * Handle Http operation that failed.
@@ -81,23 +82,28 @@ export class MarvelApiCallService {
   }
 
   getComicsOfCharacter( id: number ): Observable<Comic[]> {
-    //https://gateway.marvel.com:443/v1/public/characters/1009149/comics?
     let marvelAPIQueryString = `${ this.marvelAPIBase }characters/${ id }/comics?ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
     
     return this.http.get<any>(marvelAPIQueryString)
       .pipe(
         tap( payload => console.log('fetched getComicsOfCharacter data is ', payload), ),
         map( payload => payload.data.results ),
-        catchError(this.handleError<Character[]>('getComicsOfCharacter', [])
+        catchError(this.handleError<Comic[]>('getComicsOfCharacter', [])
       )
     );
-
-    return ;
   }
 
-  getComic( comicID: number ): Observable<Comic> {
+  getComic( id: number ): Observable<Comic> {
     //https://gateway.marvel.com:443/v1/public/comics/2539?
     //console.log("getComic() - comic ID is: ", comicID);
-    return ;
+    let marvelAPIQueryString = `${ this.marvelAPIBase }comics/${ id }?ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
+
+    return this.http.get<any>(marvelAPIQueryString)
+      .pipe(
+        tap( payload => console.log('fetched getComic data is ', payload), ),
+        map( payload => payload.data.results[0] ),
+        catchError(this.handleError<Comic>('getComic')
+      )
+    );
   }
 }
