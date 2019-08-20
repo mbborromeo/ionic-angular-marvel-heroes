@@ -44,7 +44,8 @@ export class CharactersComponent implements OnInit {
 
       const myObserver = {
         next: (res) => {
-          this.marvelData.data.results = res;
+          //this.marvelData.data.results = res;
+          this.marvelData = res;
 
           if( this.marvelData.data.results === undefined) {
             console.log("characters UNDEFINED");      
@@ -52,7 +53,7 @@ export class CharactersComponent implements OnInit {
         },
         error: (err) => console.error('Observer got an error: ' + err),
         complete: () => {
-          console.log("this.marvelData.data.results when searchCharacters complete: ", this.marvelData.data.results);
+          console.log("this.marvelData.data.results when searchCharacters complete: ", this.marvelData);
           this.loading = false;    
         },
       };
