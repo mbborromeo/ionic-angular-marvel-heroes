@@ -95,32 +95,21 @@ export class CharactersComponent implements OnInit {
   }
 
   nextPage(): void {
-    console.log("next");    
-    console.log("offsetDistance is: ", this.offsetDistance);
-    console.log("this.offsetIndex is: ", this.offsetIndex);
     let proposedOffsetIndex = this.offsetIndex + this.offsetDistance;
 
     if( proposedOffsetIndex <= this.totalItemsReturned ) {
-      console.log("ALLOWED to go to next page proposedOffsetIndex: ", proposedOffsetIndex);
-      this.getCharacters(proposedOffsetIndex);      
-      console.log("AFTER this.offsetIndex is: ", this.offsetIndex);
+      this.getCharacters(proposedOffsetIndex);            
     }
     else {
       console.log("CANNOT go to Next page, you are on last page");
-    }
-    
+    }    
   }
 
   prevPage(): void {
-    console.log("prev");
-    console.log("offsetDistance is: ", this.offsetDistance);
-    console.log("this.offsetIndex is: ", this.offsetIndex);
     let proposedOffsetIndex = this.offsetIndex - this.offsetDistance;
 
-    if( proposedOffsetIndex >= 0 ){
-      console.log("ALLOWED to go to prev page proposedOffsetIndex: ", proposedOffsetIndex);
+    if( proposedOffsetIndex >= 0 ){      
       this.getCharacters(proposedOffsetIndex);
-      console.log("AFTER this.offsetIndex is: ", this.offsetIndex);
     }
     else {
       console.log("CANNOT go to Previous page, you are on the first page");
