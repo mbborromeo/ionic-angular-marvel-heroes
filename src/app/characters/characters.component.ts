@@ -10,19 +10,16 @@ import { MarvelApiCallService } from '../marvel-api-call.service';
 })
 export class CharactersComponent implements OnInit {
   private loading: boolean = false;
-  //private characters: Character[]; //Observable<Character[]>
-  private marvelData: MarvelData; //need this to get .data.count and .data.offset, may need to use .data.results
+  private marvelData: MarvelData;
   
   constructor( private marvelService: MarvelApiCallService ) { }
 
   getCharacters(): void {    
-    //object to help debug subscribe
-    //this.characters = []; //reset    
     this.loading = true;
 
+    //object to help debug subscribe
     const myObserver = {
       next: (res) => {
-        //this.characters = res.data.results;
         this.marvelData = res;        
 
         if( this.marvelData.data.results === undefined) {
