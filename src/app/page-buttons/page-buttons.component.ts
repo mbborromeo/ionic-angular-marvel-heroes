@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MarvelData } from '../marvel-data';
+import { Comic } from '../comic/comic';
 
 @Component({
   selector: 'app-page-buttons',
@@ -6,38 +8,26 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./page-buttons.component.scss'],
 })
 export class PageButtonsComponent implements OnInit {
-  @Input() bindedMarvelData; /*: {
-    data: {
-      count: number,
-      offset: number,
-      total: number      
-    },
-    code: number
-  };*/
+  //expect an input from whichever parent-component uses this child-component
+  @Input() bindedMarvelData;
 
-  /*
-  private marvelData: {
-    data: {
-      count: number,
-      offset: number,
-      total: number      
-    },
-    code: number
-  } = this.bindedMarvelData;
-  */
+  private marvelData: MarvelData;
+  //this.marvelData.data = [...bindedMarvelData.data];
+
 
   //variables
-  private count: number;
-  private offset: number;
-  private pageNumber: number = 1; //initially
-  private total: number;
-  private pagesTotal: number;
-  private previousNextOffset: number = 20; 
-  private code: number = 99;
+  // private count: number;
+  // private offset: number;
+  // private total: number;
+  // private code: number = 99;
+  private pageNumber: number; //initially  
+  private pagesTotal: number; // = 1
+  private previousNextOffset: number; // =20
+  
 
   //functions
-  calculatePageLocation(): void {
-    // this.count = this.bindedMarvelData.data.count;
+  calculatePageLocation(): void {    
+    //this.count = this.bindedMarvelData.data.count;
     // this.offset = this.bindedMarvelData.data.offset;
     // this.total = this.bindedMarvelData.data.total;
     // this.code = this.bindedMarvelData.code;
@@ -48,13 +38,36 @@ export class PageButtonsComponent implements OnInit {
     // this.pagesTotal = Math.floor(this.total / this.previousNextOffset) + 1;
     // console.log("this.pageNumber: ", this.pageNumber);
     // console.log("this.pagesTotal: ", this.pagesTotal);
+
+    //this.marvelData = this.bindedMarvelData;
+    //this.marvelData.data.total = 99; //this.bindedMarvelData.data.total;    
+    this.marvelData = {
+      data: {
+          count: 0,
+          limit: 0,
+          offset: 0,
+          results: Comic[
+            {
+              id: 0,
+              title: "",
+              description: "",
+              format: "",
+              thumbnail: {
+                  path: "",
+                  extension: "",
+              },
+            }
+          ],
+          total: 0,
+      },
+      code: 0,
+    };
   }
 
   constructor() { }
 
   ngOnInit() {
-    //call functions
-    //this.marvelData = this.bindedMarvelData;
+    //call functions    
     this.calculatePageLocation();
   }
 
