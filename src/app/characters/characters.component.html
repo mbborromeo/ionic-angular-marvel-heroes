@@ -4,10 +4,6 @@
   <a routerLink="/home">&laquo; Back to home</a>
   <br />
 
-  <!-- Previous/Next buttons -->
-  characters.component.html: 
-  <app-page-buttons [bindedMarvelData]="marvelData"></app-page-buttons>
-  
   <ion-searchbar placeholder="Search characters" #searchInput (ionClear)="clearSearch()"></ion-searchbar>
   <ion-button (click)="searchCharacters(searchInput.value)">Search</ion-button>
   <br />
@@ -21,6 +17,11 @@
   </div>
 
   <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length>0 && !loading">  
+    <!-- Previous/Next buttons -->  
+    <!-- <app-page-buttons [bindedMarvelData]="marvelData"></app-page-buttons> -->
+    <a (click)="prevPage()">&laquo;Previous</a> {{ pageNumber }} of {{ pagesTotal }}
+    <a (click)="nextPage()">Next&raquo;</a>
+    
     <ion-list>
       <ion-item *ngFor="let character of marvelData.data.results">
         <ion-label><a routerLink="/character/{{ character.id }}">{{ character.name }}</a></ion-label>

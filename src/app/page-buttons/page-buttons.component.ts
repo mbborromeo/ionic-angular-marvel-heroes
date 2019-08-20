@@ -43,12 +43,12 @@ export class PageButtonsComponent implements OnInit {
     //this.marvelData.data.total = 99; //this.bindedMarvelData.data.total;    
     this.marvelData = {
       data: {
-          count: 20,
-          limit: 60,
-          offset: 20,
+          count: 0,
+          limit: 0,
+          offset: 0,
           results: Comic[
             {
-              id: 23,
+              id: 0,
               title: "",
               description: "",
               format: "",
@@ -58,9 +58,9 @@ export class PageButtonsComponent implements OnInit {
               },
             }
           ],
-          total: 99,
+          total: 0,
       },
-      code: 400,
+      code: 0,
     };
   }
 
