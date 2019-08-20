@@ -51,7 +51,7 @@ export class CharactersComponent implements OnInit {
         },
         error: (err) => console.error('Observer got an error: ' + err),
         complete: () => {
-          console.log("this.marvelData.data.results when searchCharacters complete: ", this.marvelData);
+          console.log("when searchCharacters complete this.marvelData  ", this.marvelData);
           this.loading = false;    
         },
       };
