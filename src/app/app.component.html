@@ -7,8 +7,8 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content ng-class="isBrowserView">
-    <ion-router-outlet></ion-router-outlet>    
+  <ion-content [scrollEvents]="true" scrollEvents="true" scroll-events="true" [scrollY]="true" scrollY="true" scroll-y="true">
+    <ion-router-outlet></ion-router-outlet><!-- animated="false" -->
   </ion-content>
 
   <ion-footer>

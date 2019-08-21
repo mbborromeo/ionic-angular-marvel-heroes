@@ -1,3 +1,22 @@
-.isBrowserView {
-    overflow-y: auto !important;
+ion-content {
+    overflow: auto !important;
+}
+
+ion-router-outlet {
+    overflow: auto !important;
+}
+
+ion-router-outlet .ion-page,
+app-characters.ion-page {
+    overflow: auto !important;
+}
+
+.ion-page {
+    overflow: auto !important;
+    display: block;
+}
+
+ion-footer {
+    position: sticky;
+    bottom: 0;
 }
