@@ -14,19 +14,20 @@
   </div>
 
   <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length>0 && !loading">  
-    <!-- Previous/Next buttons -->  
-    <div class="btn-pages" *ngIf="pagesTotal > 1">
-      <!-- <app-page-buttons [bindedMarvelData]="marvelData"></app-page-buttons> -->
-      <a (click)="prevPage(searchInput.value)" [class.disabled]="pageNumber===1">&laquo;Previous</a> Page {{ pageNumber }} of {{ pagesTotal }}
-      <a (click)="nextPage(searchInput.value)" [class.disabled]="pageNumber===pagesTotal">Next&raquo;</a>
-    </div>
     
     <ion-list>
       <ion-item *ngFor="let character of marvelData.data.results">
         <ion-label><a routerLink="/character/{{ character.id }}">{{ character.name }}</a></ion-label>
       </ion-item>
     </ion-list>
-  </div>  
 
+    <!-- Previous/Next buttons -->  
+    <div class="btn-pages" *ngIf="pagesTotal > 1">
+      <!-- <app-page-buttons [bindedMarvelData]="marvelData"></app-page-buttons> -->
+      <a (click)="prevPage(searchInput.value)" [class.disabled]="pageNumber===1">&laquo;Previous</a> Page {{ pageNumber }} of {{ pagesTotal }}
+      <a (click)="nextPage(searchInput.value)" [class.disabled]="pageNumber===pagesTotal">Next&raquo;</a>      
+    </div>
+
+  </div>  
   
 </div>
