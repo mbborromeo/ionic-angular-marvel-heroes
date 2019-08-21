@@ -20,8 +20,8 @@
   <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length>0 && !loading"> 
     <!-- Previous/Next buttons -->  
     <div *ngIf="pagesTotal > 1">
-      <a (click)="prevPage()">&laquo;Previous</a> {{ pageNumber }} of {{ pagesTotal }}
-      <a (click)="nextPage()">Next&raquo;</a>
+      <a (click)="prevPage()" [class.disabled]="pageNumber===1">&laquo;Previous</a> Page {{ pageNumber }} of {{ pagesTotal }}
+      <a (click)="nextPage()" [class.disabled]="pageNumber===pagesTotal">Next&raquo;</a>
     </div>
 
     <ion-list>
