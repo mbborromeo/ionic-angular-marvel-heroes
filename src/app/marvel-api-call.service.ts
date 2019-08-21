@@ -90,8 +90,15 @@ export class MarvelApiCallService {
     );
   }
 
-  getComicsOfCharacter( id: number ): Observable<Comic[]> {
-    let marvelAPIQueryString = `${ this.marvelAPIBase }characters/${ id }/comics?limit=${ this.limit }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
+  getComicsOfCharacter( id: number, offset?: number ): Observable<Comic[]> {
+    let marvelAPIQueryString;
+    
+    if(!offset){
+      marvelAPIQueryString = `${ this.marvelAPIBase }characters/${ id }/comics?limit=${ this.limit }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
+    }
+    else {
+      marvelAPIQueryString = `${ this.marvelAPIBase }characters/${ id }/comics?limit=${ this.limit }&offset=${ offset }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
+    }
     
     return this.http.get<any>(marvelAPIQueryString)
       .pipe(
