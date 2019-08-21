@@ -24,7 +24,7 @@ export class CharactersComponent implements OnInit {
   constructor( private marvelService: MarvelApiCallService ) { }
 
   /* include optional params for next and previous */
-  getCharacters( offset?: number ): void {    
+  getCharacters( name: string=undefined, offset?: number ): void {    
     this.loading = true;
 
     //object to help debug subscribe
@@ -58,16 +58,17 @@ export class CharactersComponent implements OnInit {
     };
 
     if( !offset ) {
-      this.marvelService.getCharacters()      
+      this.marvelService.getCharacters( name )      
         .subscribe( myObserver );
     }  
     if( offset ) {
-      this.marvelService.getCharacters( offset )      
+      this.marvelService.getCharacters( name, offset )      
         .subscribe( myObserver );
     }
   }
 
   /* include optional params for next and previous */
+  /*
   searchCharacters( name: string, offset?: number ): void {
     if( name ) {
       this.loading = true;
@@ -101,7 +102,7 @@ export class CharactersComponent implements OnInit {
       }
       if( offset ) {
         this.marvelService.searchCharacters( name )      
-          .subscribe( myObserver ); //, offset
+          .subscribe( myObserver, offset );
       }
 
     }
@@ -109,23 +110,24 @@ export class CharactersComponent implements OnInit {
       console.log("search term is blank!");
     }
   }
+  */
 
-  nextPage(): void {
+  nextPage( name: string=undefined ): void {
     let proposedOffsetIndex = this.offsetIndex + this.offsetDistance;
 
     if( proposedOffsetIndex <= this.totalItemsReturned ) {
-      this.getCharacters(proposedOffsetIndex);            
+      this.getCharacters( name, proposedOffsetIndex );            
     }
     else {
       console.log("CANNOT go to Next page, you are on last page");
     }    
   }
 
-  prevPage(): void {
+  prevPage( name: string=undefined ): void {
     let proposedOffsetIndex = this.offsetIndex - this.offsetDistance;
 
     if( proposedOffsetIndex >= 0 ){      
-      this.getCharacters(proposedOffsetIndex);
+      this.getCharacters( name, proposedOffsetIndex );
     }
     else {
       console.log("CANNOT go to Previous page, you are on the first page");

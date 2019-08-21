@@ -5,7 +5,7 @@
   <br />
 
   <ion-searchbar placeholder="Search characters" #searchInput (ionClear)="clearSearch()"></ion-searchbar>
-  <ion-button (click)="searchCharacters(searchInput.value)">Search</ion-button>
+  <ion-button (click)="getCharacters(searchInput.value)">Search</ion-button>
   <br />
 
   <div *ngIf="loading">
@@ -20,8 +20,8 @@
     <!-- Previous/Next buttons -->  
     <div *ngIf="pagesTotal > 1">
       <!-- <app-page-buttons [bindedMarvelData]="marvelData"></app-page-buttons> -->
-      <a (click)="prevPage()">&laquo;Previous</a> {{ pageNumber }} of {{ pagesTotal }}
-      <a (click)="nextPage()">Next&raquo;</a>
+      <a (click)="prevPage(searchInput.value)">&laquo;Previous</a> {{ pageNumber }} of {{ pagesTotal }}
+      <a (click)="nextPage(searchInput.value)">Next&raquo;</a>
     </div>
     
     <ion-list>
