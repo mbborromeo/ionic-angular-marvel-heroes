@@ -13,7 +13,6 @@ import { CharactersComponent } from './characters/characters.component';
 import { CharacterComponent } from './character/character.component';
 import { ComicsComponent } from './comics/comics.component';
 import { ComicComponent } from './comic/comic.component';
-import { PageButtonsComponent } from './page-buttons/page-buttons.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +20,7 @@ import { PageButtonsComponent } from './page-buttons/page-buttons.component';
     CharactersComponent,
     CharacterComponent,
     ComicsComponent,
-    ComicComponent,
-    PageButtonsComponent
+    ComicComponent
   ],
   entryComponents: [],
   imports: [
