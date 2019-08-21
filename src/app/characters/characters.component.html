@@ -1,9 +1,6 @@
 <div class="ion-padding">
   <h1>Characters</h1>
   
-  <a routerLink="/home">&laquo; Back to home</a>
-  <br />
-
   <ion-searchbar placeholder="Search characters" #searchInput (ionClear)="clearSearch()"></ion-searchbar>
   <ion-button (click)="getCharacters(searchInput.value)">Search</ion-button>
   <br /><br />
@@ -18,7 +15,7 @@
 
   <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length>0 && !loading">  
     <!-- Previous/Next buttons -->  
-    <div *ngIf="pagesTotal > 1">
+    <div class="btn-pages" *ngIf="pagesTotal > 1">
       <!-- <app-page-buttons [bindedMarvelData]="marvelData"></app-page-buttons> -->
       <a (click)="prevPage(searchInput.value)" [class.disabled]="pageNumber===1">&laquo;Previous</a> Page {{ pageNumber }} of {{ pagesTotal }}
       <a (click)="nextPage(searchInput.value)" [class.disabled]="pageNumber===pagesTotal">Next&raquo;</a>

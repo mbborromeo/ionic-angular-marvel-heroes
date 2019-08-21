@@ -1,7 +1,7 @@
 <div class="ion-padding">
   <h1>Character</h1>
 
-  <a routerLink="/characters">&laquo; Back to characters</a><!-- (click)="goBack()" -->
+  <a class="btn-back" (click)="goBack()">&laquo; Back to characters</a>
   <br />
 
   <div *ngIf="!character && loading">
@@ -23,7 +23,6 @@
       Description: {{ character.description }}
     </p>
     
-    <!-- (click)="getComicsOfCharacter( character.id )" Don't need anymore -->
     <!-- /characters/{{ character.id }}/comics/ DOES NOT WORK -->
     <ion-button routerLink="/comics-character-in/{{ character.id }}">View comics</ion-button>
     

@@ -6,7 +6,7 @@
     Comics
   </h1>
 
-  <a routerLink="/character/{{ characterID }}">&laquo; Back to character</a>
+  <a class="btn-back" (click)="goBack()">&laquo; Back to character</a>
   <br /><br />
 
   <div *ngIf="loading"><!-- marvelData.data.results.length===0 &&  -->
@@ -19,7 +19,7 @@
 
   <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length>0 && !loading"> 
     <!-- Previous/Next buttons -->  
-    <div *ngIf="pagesTotal > 1">
+    <div class="btn-pages" *ngIf="pagesTotal > 1">
       <a (click)="prevPage()" [class.disabled]="pageNumber===1">&laquo;Previous</a> Page {{ pageNumber }} of {{ pagesTotal }}
       <a (click)="nextPage()" [class.disabled]="pageNumber===pagesTotal">Next&raquo;</a>
     </div>

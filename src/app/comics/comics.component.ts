@@ -124,6 +124,10 @@ export class ComicsComponent implements OnInit {
       .subscribe( myObserver );
   }
 
+  goBack(): void {
+    this.location.back();
+  }
+
   ngOnInit() {
     this.getCharacterName(); 
     this.getComicsOfCharacter();    
