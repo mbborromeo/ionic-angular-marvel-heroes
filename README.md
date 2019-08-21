@@ -9,9 +9,11 @@ If you want to test on your mobile device:
 ionic serve --devapp
 
 ## To Do
-- UI/UX Design
-- Responsive layout: scroll doesn't seem to work on desktop web browser
 - Previous & Next Page buttons should be positioned at bottom of page
+- grey out Previous & Next Page buttons when they are on first or last page
+- Responsive layout: scroll doesn't seem to work on desktop web browser
+- UI/UX Design
+- ensure MarvelData format is used for Observables
 - Hide API keys
 
 ## Bug to fix
