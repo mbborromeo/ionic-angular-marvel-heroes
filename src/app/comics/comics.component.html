@@ -11,7 +11,8 @@
   </div>
 
   <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length===0 && !loading">
-    no comics found<br />
+    no comics found<br /><br />
+    <a class="btn-back" (click)="goBack()">&laquo; Back to character</a>
   </div>
 
   <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length>0 && !loading"> 
@@ -29,7 +30,7 @@
 
       <!-- Back button-->
       <br /><br />
-      <a class="btn-back" (click)="goBack()">&laquo; Back to character</a>  
+      <a class="btn-back" (click)="goBack()">&laquo; Back to character</a>
     </div>
     
   </div>
