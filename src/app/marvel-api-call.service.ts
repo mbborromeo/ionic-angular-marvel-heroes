@@ -90,27 +90,6 @@ export class MarvelApiCallService {
     );
   }
 
-  /*
-  searchCharacters( name: string, offset?: number ): Observable<Character[]> {    
-    let marvelAPIQueryString;
-    
-    if( !offset ){
-      marvelAPIQueryString = `${ this.marvelAPIBase }characters?nameStartsWith=${ name }&limit=${ this.limit }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
-    }
-    if( offset ) {
-      console.log("searchChars has offset");
-      marvelAPIQueryString = `${ this.marvelAPIBase }characters?nameStartsWith=${ name }&limit=${ this.limit }&offset=${ offset }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
-    }
-
-    return this.http.get<any>(marvelAPIQueryString)
-      .pipe(
-        tap( payload => console.log('fetched searchCharacters data is ', payload), ),
-        catchError(this.handleError<Character[]>('searchCharacters', [])
-      )
-    );
-  }
-  */
-
   getComicsOfCharacter( id: number ): Observable<Comic[]> {
     let marvelAPIQueryString = `${ this.marvelAPIBase }characters/${ id }/comics?limit=${ this.limit }&ts=${ this.ts }&apikey=${ this.publicKey }&hash=${ this.hash }`;
     

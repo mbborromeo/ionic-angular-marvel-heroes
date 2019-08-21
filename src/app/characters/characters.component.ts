@@ -67,51 +67,6 @@ export class CharactersComponent implements OnInit {
     }
   }
 
-  /* include optional params for next and previous */
-  /*
-  searchCharacters( name: string, offset?: number ): void {
-    if( name ) {
-      this.loading = true;
-
-      const myObserver = {
-        next: (res) => {
-          this.marvelData = res;
-
-          this.totalItemsReturned = res.data.total;
-          this.offsetIndex = res.data.offset;
-          this.countOfItemsDisplayed = res.data.count;
-          this.itemsToDisplayLimit = res.data.limit;
-          this.offsetDistance = this.itemsToDisplayLimit;
-          this.pageNumber = Math.floor(this.offsetIndex / this.offsetDistance) + 1;
-          this.pagesTotal = Math.floor(this.totalItemsReturned / this.offsetDistance) + 1;
-
-          if( this.marvelData.data.results === undefined) {
-            console.log("characters UNDEFINED");      
-          }
-        },
-        error: (err) => console.error('Observer got an error: ' + err),
-        complete: () => {
-          console.log("when searchCharacters complete this.marvelData  ", this.marvelData);
-          this.loading = false;    
-        },
-      };
-
-      if( !offset ) {
-        this.marvelService.searchCharacters( name )      
-          .subscribe( myObserver );
-      }
-      if( offset ) {
-        this.marvelService.searchCharacters( name )      
-          .subscribe( myObserver, offset );
-      }
-
-    }
-    else {
-      console.log("search term is blank!");
-    }
-  }
-  */
-
   nextPage( name: string=undefined ): void {
     let proposedOffsetIndex = this.offsetIndex + this.offsetDistance;
 
