@@ -26,22 +26,6 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 /* My custom Global styles */
-
-/* Override styles of Ionic elements  */
-ion-content {
+app-characters.ion-page {
     overflow: auto !important;
-}
-
-ion-router-outlet {
-    overflow: auto !important;
-}
-
-.ion-page {
-    overflow: auto !important;
-    display: flex !important;
-}
-
-ion-footer {
-    position: sticky;
-    bottom: 0;
 }

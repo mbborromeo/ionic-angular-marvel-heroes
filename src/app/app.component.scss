@@ -1,0 +1,14 @@
+/* Override styles of Ionic elements  */
+
+ion-content {
+    overflow: auto !important;
+}
+
+ion-router-outlet {
+    overflow: auto !important;
+}
+
+ion-footer {
+    position: sticky;
+    bottom: 0;
+}
