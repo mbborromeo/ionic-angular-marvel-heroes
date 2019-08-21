@@ -14,7 +14,8 @@ ionic serve --devapp
 - Responsive layout: scroll doesn't seem to work on desktop web browser
 - UI/UX Design
 - ensure MarvelData format is used for Observables
-- Hide API keys
+- hide API keys
+- change Search input field to hotloaded, so no need to press button
 
 ## Bug to fix
 - When using back button, the state of data does not reset on Characters list page
