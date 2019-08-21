@@ -1,7 +1,4 @@
 <div class="ion-padding">
-    <a class="btn-back" (click)="goBack()">&laquo; Back to comics</a>
-    <br />
-  
     <div *ngIf="!comic && loading">
       loading...<br />
     </div>
@@ -22,4 +19,8 @@
       </p>
       <img src="{{ comic.thumbnail.path + '.' + comic.thumbnail.extension }}" />
     </div>
+
+    <br />
+    <a class="btn-back" (click)="goBack()">&laquo; Back to comics</a>
+
 </div>
