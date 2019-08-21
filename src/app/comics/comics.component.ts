@@ -19,13 +19,22 @@ export class ComicsComponent implements OnInit {
   private loading: boolean = false;
   private loadingName: boolean = false;
 
+  //vars for page buttons
+  private totalItemsReturned: number;
+  private offsetIndex: number;
+  private itemsToDisplayLimit: number;
+  private countOfItemsDisplayed: number;
+  private offsetDistance: number;
+  private pageNumber: number;
+  private pagesTotal: number;
+
   constructor( 
     private route: ActivatedRoute,
     private location: Location,
     private marvelService: MarvelApiCallService
   ) { }
   
-  getComicsOfCharacter(): void {
+  getComicsOfCharacter( offset?: number ): void {
     this.characterID = +this.route.snapshot.paramMap.get('id'); //get ID from URL
     this.loading = true;
     console.log("comics.component: getComicsOfCharacter() - character ID is: ", this.characterID);
@@ -34,7 +43,21 @@ export class ComicsComponent implements OnInit {
       next: (res) => {
         this.marvelData = res; //res.data.results
 
-        if( this.marvelData === undefined) {
+        this.totalItemsReturned = res.data.total;
+        this.offsetIndex = res.data.offset;
+        this.countOfItemsDisplayed = res.data.count;
+        this.itemsToDisplayLimit = res.data.limit;
+        this.offsetDistance = this.itemsToDisplayLimit;
+        this.pageNumber = Math.floor(this.offsetIndex / this.offsetDistance) + 1;
+        this.pagesTotal = Math.floor(this.totalItemsReturned / this.offsetDistance) + 1;
+
+        console.log("---------CharsComponent this.marvelData: ", this.marvelData); 
+        console.log("this.totalItemsReturned: ", this.totalItemsReturned);
+        console.log("this.offsetIndex: ", this.offsetIndex);
+        console.log("this.countOfItemsToDisplay: ", this.countOfItemsDisplayed);
+        console.log("this.itemsToDisplayLimit: ", this.itemsToDisplayLimit);
+
+        if( this.marvelData.data.results === undefined) {
           console.log("comics UNDEFINED");      
         }
       },
@@ -45,8 +68,36 @@ export class ComicsComponent implements OnInit {
       },
     };
 
-    this.marvelService.getComicsOfCharacter( this.characterID )
-      .subscribe( myObserver );
+    if( !offset ) {
+      this.marvelService.getComicsOfCharacter( this.characterID )
+        .subscribe( myObserver );
+    }
+    if( offset ) {
+      this.marvelService.getComicsOfCharacter( this.characterID, offset )
+        .subscribe( myObserver );
+    }
+  }
+
+  nextPage( id: number=undefined ): void {
+    let proposedOffsetIndex = this.offsetIndex + this.offsetDistance;
+
+    if( proposedOffsetIndex <= this.totalItemsReturned ) {
+      this.getComicsOfCharacter( proposedOffsetIndex );            
+    }
+    else {
+      console.log("CANNOT go to Next page, you are on last page");
+    }    
+  }
+
+  prevPage( id: number=undefined ): void {
+    let proposedOffsetIndex = this.offsetIndex - this.offsetDistance;
+
+    if( proposedOffsetIndex >= 0 ){      
+      this.getComicsOfCharacter( proposedOffsetIndex );
+    }
+    else {
+      console.log("CANNOT go to Previous page, you are on the first page");
+    }    
   }
 
   getCharacterName(): void {

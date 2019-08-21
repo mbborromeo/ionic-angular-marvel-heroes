@@ -6,7 +6,7 @@
 
   <ion-searchbar placeholder="Search characters" #searchInput (ionClear)="clearSearch()"></ion-searchbar>
   <ion-button (click)="getCharacters(searchInput.value)">Search</ion-button>
-  <br />
+  <br /><br />
 
   <div *ngIf="loading">
     loading...<br />
