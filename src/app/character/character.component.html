@@ -1,7 +1,8 @@
 <div class="ion-padding">
   <h1>Character</h1>
 
-  <a routerLink="/characters">&laquo; Back to characters</a><!-- (click)="goBack()" -->
+  <!-- routerLink="/characters" -->
+  <a class="btn-back" (click)="goBack()">&laquo; Back to characters</a>
   <br />
 
   <div *ngIf="!character && loading">

@@ -51,11 +51,9 @@ export class CharacterComponent implements OnInit {
       .subscribe( myObserver );
   }
 
-  /*
   goBack(): void {
     this.location.back();
   }
-  */
 
   ngOnInit() {    
     this.getCharacter();

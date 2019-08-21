@@ -29,3 +29,17 @@
 .ion-page {
     overflow: auto !important;
 }
+
+/* Buttons used on multiple pages */
+.btn-pages a, a.btn-back {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.btn-pages a.disabled {
+    pointer-events: none;
+    cursor: default;
+    color: grey;
+    opacity: 0.5;
+    text-decoration: none;
+}
