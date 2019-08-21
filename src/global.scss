@@ -31,6 +31,20 @@
 }
 
 /* Buttons used on multiple pages */
+.btn-pages {
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+    min-height: 56px;
+    /* line-height: 56px; */
+
+    /*display: block;   
+    order: 1;
+    width: 100%;
+    z-index: 10;    
+    */
+}
+
 .btn-pages a, a.btn-back {
     text-decoration: underline;
     cursor: pointer;

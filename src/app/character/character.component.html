@@ -1,9 +1,6 @@
 <div class="ion-padding">
   <h1>Character</h1>
 
-  <a class="btn-back" (click)="goBack()">&laquo; Back to characters</a>
-  <br />
-
   <div *ngIf="!character && loading">
     loading...<br />
   </div>
@@ -23,12 +20,15 @@
       Description: {{ character.description }}
     </p>
     
+    <img src="{{ character.thumbnail.path + '.' + character.thumbnail.extension }}" />    
+    <br /><br />
+
     <!-- /characters/{{ character.id }}/comics/ DOES NOT WORK -->
     <ion-button routerLink="/comics-character-in/{{ character.id }}">View comics</ion-button>
-    
-    <img src="{{ character.thumbnail.path + '.' + character.thumbnail.extension }}" />    
-  </div>
-      
-  <br />
+    <br /><br />
+
+    <!-- Back button-->
+    <a class="btn-back" (click)="goBack()">&laquo; Back to characters</a>
+  </div>     
   
 </div>
