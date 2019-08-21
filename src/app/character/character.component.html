@@ -1,7 +1,6 @@
 <div class="ion-padding">
   <h1>Character</h1>
 
-  <!-- routerLink="/characters" -->
   <a class="btn-back" (click)="goBack()">&laquo; Back to characters</a>
   <br />
 
@@ -24,7 +23,6 @@
       Description: {{ character.description }}
     </p>
     
-    <!-- (click)="getComicsOfCharacter( character.id )" Don't need anymore -->
     <!-- /characters/{{ character.id }}/comics/ DOES NOT WORK -->
     <ion-button routerLink="/comics-character-in/{{ character.id }}">View comics</ion-button>
     
