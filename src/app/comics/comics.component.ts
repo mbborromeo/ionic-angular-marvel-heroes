@@ -99,7 +99,7 @@ export class ComicsComponent implements OnInit {
       this.getComicsOfCharacter( proposedOffsetIndex );
     }
     else {
-      console.log("CANNOT go to Previous page, you are on the first page");
+      console.log("CANNOT go to Prev page, you are on the first page");
     }    
   }
 

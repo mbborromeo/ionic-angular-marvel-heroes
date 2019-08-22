@@ -1,6 +1,6 @@
 <div class="ion-padding">
   <h1>Characters</h1>
-  
+
   <ion-searchbar placeholder="Search characters" #searchInput (ionClear)="clearSearch()"></ion-searchbar>
   <ion-button (click)="getCharacters(searchInput.value)">Search</ion-button>
   <br /><br />
@@ -12,33 +12,41 @@
   </div>
 
   <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length===0 && !loading">
-    no characters found<br />
+    no characters found
   </div>
 
   <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length>0 && !loading">
     <ion-list>
-      <ion-item *ngFor="let character of marvelData.data.results">
-        <ion-avatar slot="start">
+      <ion-item *ngFor="let character of marvelData.data.results" detail="false" routerLink="/character/{{ character.id }}">
+        <ion-thumbnail slot="start">
           <img src="{{ character.thumbnail.path + '.' + character.thumbnail.extension }}" />
-        </ion-avatar>
-        <ion-label><a routerLink="/character/{{ character.id }}">{{ character.name }}</a></ion-label>
+        </ion-thumbnail>
+        <ion-label text-wrap>{{ character.name }}</ion-label>
       </ion-item>
     </ion-list>
 
-    <div class="container-bottom-buttons">
-      <!-- Previous/Next buttons -->  
-      <div class="btn-pages" *ngIf="pagesTotal > 1">
-        <!-- <app-page-buttons [bindedMarvelData]="marvelData"></app-page-buttons> -->
-        <a (click)="prevPage(searchInput.value)" [class.disabled]="pageNumber===1">&laquo;Previous</a> Page {{ pageNumber }} of {{ pagesTotal }}
-        <a (click)="nextPage(searchInput.value)" [class.disabled]="pageNumber===pagesTotal">Next&raquo;</a>      
-      </div>
+    <!-- Page buttons -->
+    <ion-toolbar>
+      <ion-buttons slot="secondary">
+        <span [class.hide]="pageNumber===1">
+          <ion-button fill="solid" (click)="prevPage(searchInput.value)">
+            <ion-icon slot="start" name="arrow-dropleft-circle"></ion-icon>
+            Prev
+          </ion-button>
+        </span>
+      </ion-buttons>        
 
-      <!-- Scroll to top/bottom buttons -->
-      <!--
-      <a (click)="scrollToTop()">Top</a> | 
-      <a (click)="scrollToBottom()">Bottom</a>
-      -->
-    </div>
+      <ion-title>Page {{ pageNumber }} of {{ pagesTotal }}</ion-title>
+      
+      <ion-buttons slot="primary">
+        <span [class.hide]="pageNumber===pagesTotal">
+          <ion-button fill="solid" (click)="nextPage(searchInput.value)">
+            Next
+            <ion-icon slot="end" name="arrow-dropright-circle"></ion-icon>
+          </ion-button>
+        </span>  
+      </ion-buttons>      
+    </ion-toolbar>  
 
   </div>  
   
