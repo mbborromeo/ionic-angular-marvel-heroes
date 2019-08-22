@@ -57,6 +57,9 @@ export class ComicsComponent implements OnInit {
         console.log("this.countOfItemsToDisplay: ", this.countOfItemsDisplayed);
         console.log("this.itemsToDisplayLimit: ", this.itemsToDisplayLimit);
 
+        console.log("pageNumber ", this.pageNumber);
+        console.log("pagesTotal", this.pagesTotal);
+
         if( this.marvelData.data.results === undefined) {
           console.log("comics UNDEFINED");      
         }

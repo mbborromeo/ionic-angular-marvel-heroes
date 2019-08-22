@@ -6,15 +6,16 @@
   <br /><br />
 
   <div *ngIf="loading">
-    loading...<br />
+    <div class="container-loading-list">
+      <ion-spinner></ion-spinner>
+    </div>  
   </div>
 
   <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length===0 && !loading">
     no characters found<br />
   </div>
 
-  <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length>0 && !loading">  
-    
+  <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length>0 && !loading">
     <ion-list>
       <ion-item *ngFor="let character of marvelData.data.results">
         <ion-avatar slot="start">
@@ -24,13 +25,19 @@
       </ion-item>
     </ion-list>
 
-    <div class="container-sticky-bottom">
+    <div class="container-bottom-buttons">
       <!-- Previous/Next buttons -->  
       <div class="btn-pages" *ngIf="pagesTotal > 1">
         <!-- <app-page-buttons [bindedMarvelData]="marvelData"></app-page-buttons> -->
         <a (click)="prevPage(searchInput.value)" [class.disabled]="pageNumber===1">&laquo;Previous</a> Page {{ pageNumber }} of {{ pagesTotal }}
         <a (click)="nextPage(searchInput.value)" [class.disabled]="pageNumber===pagesTotal">Next&raquo;</a>      
       </div>
+
+      <!-- Scroll to top/bottom buttons -->
+      <!--
+      <a (click)="scrollToTop()">Top</a> | 
+      <a (click)="scrollToBottom()">Bottom</a>
+      -->
     </div>
 
   </div>  

@@ -1,6 +1,8 @@
 <div class="ion-padding">
     <div *ngIf="!comic && loading">
-      loading...<br />
+      <div class="container-loading-list">
+        <ion-spinner></ion-spinner>
+      </div>
     </div>
   
     <div *ngIf="!comic && !loading">
