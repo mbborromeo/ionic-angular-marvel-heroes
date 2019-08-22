@@ -1,14 +1,15 @@
 # ionic-angular-marvel-heroes
 A hybrid mobile app displaying Marvel heroes built in Ionic, Angular with a Marvel API call.
 
-## Build
-npm install
-ionic serve
+## Build from command line
+`npm install`
 
-If you want to test on your mobile device:
-ionic serve --devapp
+`ionic serve`
 
-## Features
+If you want to test on your mobile device, install Ionic DevApp on your phone, then from your command line type:
+`ionic serve --devapp`
+
+## App Features
 - Welcome page
 - Characters list page (with search field and previous/next page buttons for results)
 - Character details page (with button to view comics they are in)
