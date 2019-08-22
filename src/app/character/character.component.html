@@ -11,9 +11,9 @@
   
   <div *ngIf="character && !loading">
     <h1>{{ character.name }}</h1>
-    <p>
-      Description: {{ character.description }}
-    </p>    
+    
+    <p>{{ character.description }}</p>    
+    
     <img src="{{ character.thumbnail.path + '.' + character.thumbnail.extension }}" />    
     <br /><br />
 
