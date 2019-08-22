@@ -8,7 +8,8 @@ ionic serve
 If you want to test on your mobile device:
 ionic serve --devapp
 
-## To Do
-- change Search input field to hotloaded, so no need to press button
+## To Do/Improvements
+- make large images on desktop full full width
+- improve button placement
 
 ## Bugs to fix

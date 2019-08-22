@@ -1,8 +1,7 @@
 <div class="ion-padding">
   <h1>Characters</h1>
 
-  <ion-searchbar placeholder="Search characters" #searchInput (ionClear)="clearSearch()"></ion-searchbar>
-  <ion-button (click)="getCharacters(searchInput.value)">Search</ion-button>
+  <ion-searchbar placeholder="Search characters" #searchInput (ionClear)="clearSearch()" debounce=500 (ionChange)="getCharacters(searchInput.value)"></ion-searchbar>
   <br /><br />
 
   <div *ngIf="loading">
