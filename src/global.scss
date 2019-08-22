@@ -66,6 +66,12 @@ ion-list ion-label a {
     text-decoration: none;
 }
 
+ion-label {
+    text-overflow: unset !important;
+    white-space: unset !important;
+    overflow: visible !important;
+}
+
 /* Loading container */
 .container-loading-list {
     width: 100%;
