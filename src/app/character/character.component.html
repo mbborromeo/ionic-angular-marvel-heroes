@@ -2,7 +2,9 @@
   <h1>Character</h1>
 
   <div *ngIf="!character && loading">
-    loading...<br />
+    <div class="container-loading-list">
+      <ion-spinner></ion-spinner>
+    </div>    
   </div>
 
   <div *ngIf="!character && !loading">

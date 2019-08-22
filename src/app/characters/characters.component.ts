@@ -94,6 +94,22 @@ export class CharactersComponent implements OnInit {
     this.getCharacters();
   }
 
+  /*
+  getContent() {
+    return document.querySelector('ion-content');
+  }
+
+  scrollToBottom(): void {
+    console.log("scroll bottom");
+    this.getContent().scrollToBottom(500);
+  }
+  
+  scrollToTop(): void {
+    console.log("scroll top");
+    this.getContent().scrollToTop(500);
+  }
+  */
+
   ngOnInit() {
     this.getCharacters();
   }

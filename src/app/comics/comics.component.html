@@ -7,7 +7,9 @@
   </h1>
 
   <div *ngIf="loading"><!-- marvelData.data.results.length===0 &&  -->
-    loading...<br />
+    <div class="container-loading-list">
+      <ion-spinner></ion-spinner>
+    </div>
   </div>
 
   <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length===0 && !loading">
@@ -22,14 +24,13 @@
       </ion-item>
     </ion-list>
 
-    <div class="container-sticky-bottom">
+    
+    <div class="container-bottom-buttons" [class.sticky]="pagesTotal > 1">
       <!-- Previous/Next buttons -->  
-      <div *ngIf="pagesTotal > 1">
-        <!-- <app-page-buttons [bindedMarvelData]="marvelData"></app-page-buttons> -->
-        <a (click)="prevPage()" [class.disabled]="pageNumber===1">&laquo;Previous</a> Page {{ pageNumber }} of {{ pagesTotal }}
-        <a (click)="nextPage()" [class.disabled]="pageNumber===pagesTotal">Next&raquo;</a>
-      </div>
-
+      <!-- <app-page-buttons [bindedMarvelData]="marvelData"></app-page-buttons> -->
+      <a (click)="prevPage()" [class.disabled]="pageNumber==1">&laquo;Previous</a> Page {{ pageNumber }} of {{ pagesTotal }}
+      <a (click)="nextPage()" [class.disabled]="pageNumber==pagesTotal">Next&raquo;</a>
+      
       <!-- Back button-->
       <br /><br />
       <a class="btn-back" (click)="goBack()">&laquo; Back to character</a>
