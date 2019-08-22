@@ -85,7 +85,7 @@ export class CharactersComponent implements OnInit {
       this.getCharacters( name, proposedOffsetIndex );
     }
     else {
-      console.log("CANNOT go to Previous page, you are on the first page");
+      console.log("CANNOT go to Prev page, you are on the first page");
     }    
   }
 

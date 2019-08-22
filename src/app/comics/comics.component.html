@@ -12,6 +12,7 @@
   </div>
 
   <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length===0 && !loading">
+    <br />
     no comics found    
   </div>
 
@@ -27,12 +28,28 @@
       </ion-item>
     </ion-list>
     
-    <div class="container-buttons">
-      <!-- Previous/Next buttons -->  
-      <!-- <app-page-buttons [bindedMarvelData]="marvelData"></app-page-buttons> -->
-      <a (click)="prevPage()" [class.disabled]="pageNumber==1">&laquo;Previous</a> Page {{ pageNumber }} of {{ pagesTotal }}
-      <a (click)="nextPage()" [class.disabled]="pageNumber==pagesTotal">Next&raquo;</a>
-    </div>    
+    <!-- Page buttons -->
+    <ion-toolbar>
+      <ion-buttons slot="secondary">
+        <span [class.hide]="pageNumber===1">
+          <ion-button fill="solid" (click)="prevPage()">
+            <ion-icon slot="start" name="arrow-dropleft-circle"></ion-icon>
+            Prev
+          </ion-button>
+        </span>
+      </ion-buttons>        
+
+      <ion-title>Page {{ pageNumber }} of {{ pagesTotal }}</ion-title>
+      
+      <ion-buttons slot="primary">
+        <span [class.hide]="pageNumber===pagesTotal">
+          <ion-button fill="solid" (click)="nextPage()">
+            Next
+            <ion-icon slot="end" name="arrow-dropright-circle"></ion-icon>
+          </ion-button>
+        </span>  
+      </ion-buttons>      
+    </ion-toolbar> 
     
   </div>
 

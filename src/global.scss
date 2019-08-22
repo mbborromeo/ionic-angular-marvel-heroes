@@ -31,6 +31,10 @@
 }
 
 /* Buttons used on multiple pages */
+.hide {
+    display: none;
+}
+
 .container-buttons {    
     background-color: white;
     min-height: 18px;
@@ -58,7 +62,7 @@
             opacity: 0.5;
             text-decoration: none;
         }
-    }
+    }    
 }
 
 
