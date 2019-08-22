@@ -2,7 +2,7 @@
   <h1>Characters</h1>
 
   <ion-searchbar placeholder="Search characters" #searchInput (ionClear)="clearSearch()" debounce=500 (ionChange)="getCharacters(searchInput.value)"></ion-searchbar>
-  <br /><br />
+  <br />
 
   <div *ngIf="loading">
     <div class="container-loading-list">
