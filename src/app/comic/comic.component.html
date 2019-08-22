@@ -4,7 +4,7 @@
     </div>
   
     <div *ngIf="!comic && !loading">
-      comic not found<br />
+      comic not found<br />      
     </div>
     
     <div *ngIf="comic && !loading">      
@@ -20,6 +20,7 @@
       <img src="{{ comic.thumbnail.path + '.' + comic.thumbnail.extension }}" />
     </div>
 
+    <!-- Back button -->
     <br />
     <a class="btn-back" (click)="goBack()">&laquo; Back to comics</a>
 
