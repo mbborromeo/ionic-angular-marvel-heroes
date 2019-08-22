@@ -31,7 +31,7 @@
 }
 
 /* Buttons used on multiple pages */
-.btn-pages {
+.container-sticky-bottom {
     position: sticky;
     bottom: 0;
     background-color: white;
@@ -45,12 +45,12 @@
     */
 }
 
-.btn-pages a, a.btn-back {
+.container-sticky-bottom a {
     text-decoration: underline;
     cursor: pointer;
 }
 
-.btn-pages a.disabled {
+.container-sticky-bottom a.disabled {
     pointer-events: none;
     cursor: default;
     color: grey;
