@@ -1,33 +1,35 @@
 <div class="ion-padding">
-    <div *ngIf="!comic && loading">
-      <div class="container-loading-list">
-        <ion-spinner></ion-spinner>
-      </div>
-    </div>
-  
-    <div *ngIf="!comic && !loading">
-      comic not found<br />      
-    </div>
-    
-    <div *ngIf="comic && !loading">      
-      <h1>{{ comic.title }}</h1>
-
-      <br />
-      <img src="{{ comic.thumbnail.path + '.' + comic.thumbnail.extension }}" />
-
-      <p>
-        <b>Format:</b> {{ comic.format }} | 
-        <b>Issue No.:</b> {{ comic.issueNumber }}
-      </p>
-
-      <p>
-        {{ comic.description }}
-      </p>
-      
-    </div>
-
-    <!-- Back button -->
+  <div class="container-buttons">
+    <!-- Back button-->
+    <a class="btn-back" (click)="goBack()">&laquo; Back</a>
     <br />
-    <a class="btn-back" (click)="goBack()">&laquo; Back to comics</a>
+  </div>
+
+  <div *ngIf="!comic && loading">
+    <div class="container-loading-list">
+      <ion-spinner></ion-spinner>
+    </div>
+  </div>
+
+  <div *ngIf="!comic && !loading">
+    comic not found<br />      
+  </div>
+  
+  <div *ngIf="comic && !loading">      
+    <h1>{{ comic.title }}</h1>
+
+    <br />
+    <img src="{{ comic.thumbnail.path + '.' + comic.thumbnail.extension }}" />
+
+    <p>
+      <b>Format:</b> {{ comic.format }} | 
+      <b>Issue No.:</b> {{ comic.issueNumber }}
+    </p>
+
+    <p>
+      {{ comic.description }}
+    </p>
+    
+  </div>
 
 </div>

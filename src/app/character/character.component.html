@@ -1,4 +1,10 @@
 <div class="ion-padding">
+  <div class="container-buttons">
+    <!-- Back button-->
+    <a class="btn-back" (click)="goBack()">&laquo; Back</a>
+    <br />
+  </div>
+
   <div *ngIf="!character && loading">
     <div class="container-loading-list">
       <ion-spinner></ion-spinner>
@@ -21,9 +27,5 @@
     <ion-button expand="block" routerLink="/comics-character-in/{{ character.id }}">View comics</ion-button>
     <br />
   </div>     
-
-  <!-- Back button-->
-  <br />
-  <a class="btn-back" (click)="goBack()">&laquo; Back to characters</a>
   
 </div>

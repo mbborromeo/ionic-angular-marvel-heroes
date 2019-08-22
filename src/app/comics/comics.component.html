@@ -1,10 +1,9 @@
 <div class="ion-padding">
-  <h1>
-    <span *ngIf="characterName && !loadingName">
-      {{ characterName + ' ' }}
-    </span>
-    Comics
-  </h1>
+  <div class="container-buttons">
+    <!-- Back button-->
+    <a class="btn-back" (click)="goBack()">&laquo; Back</a>
+    <br />
+  </div>
 
   <div *ngIf="loading"><!-- marvelData.data.results.length===0 &&  -->
     <div class="container-loading-list">
@@ -13,11 +12,12 @@
   </div>
 
   <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length===0 && !loading">
-    no comics found<br /><br />
-    <a class="btn-back" (click)="goBack()">&laquo; Back to character</a>
+    no comics found    
   </div>
 
   <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length>0 && !loading"> 
+    <h1 *ngIf="characterName && !loadingName">{{ characterName + ' ' }} Comics</h1>
+
     <ion-list>
       <ion-item *ngFor="let comic of marvelData.data.results" detail="false" routerLink="/comic/{{ comic.id }}">
         <ion-thumbnail slot="start">
@@ -26,18 +26,13 @@
         <ion-label text-wrap>{{ comic.title }}</ion-label>
       </ion-item>
     </ion-list>
-
     
-    <div class="container-bottom-buttons" [class.sticky]="pagesTotal > 1">
+    <div class="container-buttons">
       <!-- Previous/Next buttons -->  
       <!-- <app-page-buttons [bindedMarvelData]="marvelData"></app-page-buttons> -->
       <a (click)="prevPage()" [class.disabled]="pageNumber==1">&laquo;Previous</a> Page {{ pageNumber }} of {{ pagesTotal }}
       <a (click)="nextPage()" [class.disabled]="pageNumber==pagesTotal">Next&raquo;</a>
-      
-      <!-- Back button-->
-      <br /><br />
-      <a class="btn-back" (click)="goBack()">&laquo; Back to character</a>
-    </div>
+    </div>    
     
   </div>
 
