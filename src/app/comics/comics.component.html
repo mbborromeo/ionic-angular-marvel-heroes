@@ -20,6 +20,9 @@
   <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length>0 && !loading"> 
     <ion-list>
       <ion-item *ngFor="let comic of marvelData.data.results">
+        <ion-thumbnail slot="start">
+          <img src="{{ comic.thumbnail.path + '.' + comic.thumbnail.extension }}" />
+        </ion-thumbnail>
         <ion-label><a routerLink="/comic/{{ comic.id }}">{{ comic.title }}</a></ion-label>
       </ion-item>
     </ion-list>

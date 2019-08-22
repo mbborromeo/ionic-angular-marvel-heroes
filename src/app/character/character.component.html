@@ -1,6 +1,4 @@
 <div class="ion-padding">
-  <h1>Character</h1>
-
   <div *ngIf="!character && loading">
     <div class="container-loading-list">
       <ion-spinner></ion-spinner>
@@ -11,17 +9,11 @@
     character not found<br />
   </div>
   
-  <div *ngIf="character && !loading">    
-    <p>
-      <b>{{ character.name }}</b>
-    </p>    
-    <p>
-      ID: {{ character.id }}
-    </p>    
+  <div *ngIf="character && !loading">
+    <h1>{{ character.name }}</h1>
     <p>
       Description: {{ character.description }}
-    </p>
-    
+    </p>    
     <img src="{{ character.thumbnail.path + '.' + character.thumbnail.extension }}" />    
     <br /><br />
 
