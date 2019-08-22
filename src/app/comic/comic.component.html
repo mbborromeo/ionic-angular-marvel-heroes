@@ -12,15 +12,18 @@
     <div *ngIf="comic && !loading">      
       <h1>{{ comic.title }}</h1>
 
+      <br />
+      <img src="{{ comic.thumbnail.path + '.' + comic.thumbnail.extension }}" />
+
+      <p>
+        <b>Format:</b> {{ comic.format }} | 
+        <b>Issue No.:</b> {{ comic.issueNumber }}
+      </p>
+
       <p>
         {{ comic.description }}
       </p>
-
-      <p>
-        <b>Format:</b> {{ comic.format }}
-      </p>
-
-      <img src="{{ comic.thumbnail.path + '.' + comic.thumbnail.extension }}" />
+      
     </div>
 
     <!-- Back button -->

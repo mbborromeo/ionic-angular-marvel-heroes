@@ -11,11 +11,11 @@
   
   <div *ngIf="character && !loading">
     <h1>{{ character.name }}</h1>
+
+    <br />
+    <img src="{{ character.thumbnail.path + '.' + character.thumbnail.extension }}" />        
     
-    <p>{{ character.description }}</p>    
-    
-    <img src="{{ character.thumbnail.path + '.' + character.thumbnail.extension }}" />    
-    <br /><br />
+    <p>{{ character.description }}</p>
 
     <!-- /characters/{{ character.id }}/comics/ DOES NOT WORK -->
     <ion-button routerLink="/comics-character-in/{{ character.id }}">View comics</ion-button>
