@@ -9,7 +9,7 @@ If you want to test on your mobile device:
 ionic serve --devapp
 
 ## To Do/Improvements
-- make large images on desktop full full width
+- make large images on desktop full width
 - improve button placement
 
 ## Bugs to fix
