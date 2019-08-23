@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Character } from '../character/character';
+//import { Character } from '../character/character';
 import { MarvelData } from '../marvel-data';
 import { MarvelApiCallService } from '../marvel-api-call.service';
 
@@ -40,12 +40,6 @@ export class CharactersComponent implements OnInit {
         this.pageNumber = Math.floor(this.offsetIndex / this.offsetDistance) + 1;
         this.pagesTotal = Math.floor(this.totalItemsReturned / this.offsetDistance) + 1;
 
-        console.log("---------CharsComponent this.marvelData: ", this.marvelData); 
-        console.log("this.totalItemsReturned: ", this.totalItemsReturned);
-        console.log("this.offsetIndex: ", this.offsetIndex);
-        console.log("this.countOfItemsToDisplay: ", this.countOfItemsDisplayed);
-        console.log("this.itemsToDisplayLimit: ", this.itemsToDisplayLimit);
-
         if( this.marvelData.data.results === undefined) {
           console.log("characters UNDEFINED");      
         }
@@ -73,9 +67,6 @@ export class CharactersComponent implements OnInit {
     if( proposedOffsetIndex <= this.totalItemsReturned ) {
       this.getCharacters( name, proposedOffsetIndex );            
     }
-    else {
-      console.log("CANNOT go to Next page, you are on last page");
-    }    
   }
 
   prevPage( name: string=undefined ): void {
@@ -84,9 +75,6 @@ export class CharactersComponent implements OnInit {
     if( proposedOffsetIndex >= 0 ){      
       this.getCharacters( name, proposedOffsetIndex );
     }
-    else {
-      console.log("CANNOT go to Prev page, you are on the first page");
-    }    
   }
 
   clearSearch(): void {
@@ -113,5 +101,4 @@ export class CharactersComponent implements OnInit {
   ngOnInit() {
     this.getCharacters();
   }
-
 }
