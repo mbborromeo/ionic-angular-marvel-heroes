@@ -6,7 +6,7 @@ To build:
 
 `npm install`
 
-To serve in your localhost, and view in your browser (http://localhost:8100/):
+To serve in your localhost, and view in your desktop web browser http://localhost:8100/:
 
 `ionic serve`
 
