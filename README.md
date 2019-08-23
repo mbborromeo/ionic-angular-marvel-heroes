@@ -1,6 +1,10 @@
 # ionic-angular-marvel-heroes
 A hybrid mobile app displaying Marvel heroes built in Ionic, Angular with a Marvel API call.
 
+Live site can be viewed at:
+
+https://mbborromeo.github.io/ionic-angular-marvel-heroes/
+
 ## Build from command line
 To build:
 
