@@ -11,22 +11,22 @@ import { MarvelData } from '../marvel-data';
   styleUrls: ['./comics.component.scss'],
 })
 export class ComicsComponent implements OnInit {
-  private characterID: number;
-  private characterName: string;
+  public characterID: number;
+  public characterName: string;
   
   //private comics: Comic[] = [];
-  private marvelData: MarvelData;
-  private loading: boolean = false;
-  private loadingName: boolean = false;
+  public marvelData: MarvelData;
+  public loading: boolean = false;
+  public loadingName: boolean = false;
 
   //vars for page buttons
-  private totalItemsReturned: number;
-  private offsetIndex: number;
-  private itemsToDisplayLimit: number;
-  private countOfItemsDisplayed: number;
-  private offsetDistance: number;
-  private pageNumber: number;
-  private pagesTotal: number;
+  public totalItemsReturned: number;
+  public offsetIndex: number;
+  public itemsToDisplayLimit: number;
+  public countOfItemsDisplayed: number;
+  public offsetDistance: number;
+  public pageNumber: number;
+  public pagesTotal: number;
 
   constructor( 
     private route: ActivatedRoute,

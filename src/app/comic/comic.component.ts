@@ -11,9 +11,9 @@ import { MarvelApiCallService } from '../marvel-api-call.service';
 })
 export class ComicComponent implements OnInit {
 
-  private comicID: number;
-  private comic: Comic;
-  private loading: boolean = false;
+  public comicID: number;
+  public comic: Comic;
+  public loading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
