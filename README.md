@@ -6,7 +6,7 @@ A hybrid mobile app displaying Marvel heroes built in Ionic, Angular with a Marv
 
 `ionic serve`
 
-If you want to test on your mobile device, install Ionic DevApp on your phone, then from your command line type:
+If you want to test on your mobile device, install Ionic DevApp on your phone, make sure your phone is connected to the same Wi-fi as your laptop, then from the command line on your laptop type: 
 `ionic serve --devapp`
 
 ## App Features
@@ -17,7 +17,7 @@ If you want to test on your mobile device, install Ionic DevApp on your phone, t
 - Comic details page
 
 ## Future Improvements / To Do
-- create Global function/component for Back button used on most pages
+- create global function/component for Back button used on most pages
 - create component for Previous & Next buttons used on list pages
 - improve button placement (maybe pin to top or bottom)
 - centre the layout for desktop view
