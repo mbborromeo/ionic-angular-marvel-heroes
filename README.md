@@ -2,8 +2,10 @@
 A hybrid mobile app displaying Marvel heroes built in Ionic, Angular with a Marvel API call.
 
 ## Build from command line
+To build
 `npm install`
 
+To view locally on your browser on http://localhost:8100/
 `ionic serve`
 
 If you want to test on your mobile device, install Ionic DevApp on your phone, make sure your phone is connected to the same Wi-fi as your laptop, then from the command line on your laptop type: 
