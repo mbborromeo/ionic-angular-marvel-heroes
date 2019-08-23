@@ -4,6 +4,7 @@ A hybrid mobile app displaying Marvel heroes built in Ionic, Angular with a Marv
 ## Build from command line
 To build:
 
+Make sure NPM is installed, and type in:
 `npm install`
 
 To serve in your localhost, and view in your desktop web browser http://localhost:8100/:
@@ -34,3 +35,16 @@ If you want to test on your mobile device, install Ionic DevApp on your phone, m
 - remove keys
 
 ## Bugs to fix
+
+
+## Credits / Attribution
+
+Data provided by Marvel. © 2014 Marvel (http://marvel.com)
+
+Ionic (https://ionicframework.com/docs)
+
+Angular (https://angular.io/docs)
+
+CryptoJS (https://github.com/brix/crypto-js)
+
+NPM (https://www.npmjs.com/get-npm)
