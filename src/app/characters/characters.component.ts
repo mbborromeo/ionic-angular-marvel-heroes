@@ -9,17 +9,17 @@ import { MarvelApiCallService } from '../marvel-api-call.service';
   styleUrls: ['./characters.component.scss'],
 })
 export class CharactersComponent implements OnInit {
-  private loading: boolean = false;
-  private marvelData: MarvelData;
+  public loading: boolean = false;
+  public marvelData: MarvelData;
 
   //vars for page buttons
-  private totalItemsReturned: number;
-  private offsetIndex: number;
-  private itemsToDisplayLimit: number;
-  private countOfItemsDisplayed: number;
-  private offsetDistance: number;
-  private pageNumber: number;
-  private pagesTotal: number;
+  public totalItemsReturned: number;
+  public offsetIndex: number;
+  public itemsToDisplayLimit: number;
+  public countOfItemsDisplayed: number;
+  public offsetDistance: number;
+  public pageNumber: number;
+  public pagesTotal: number;
   
   constructor( private marvelService: MarvelApiCallService ) { }
 

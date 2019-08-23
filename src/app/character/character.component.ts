@@ -11,8 +11,8 @@ import { Character } from '../character/character';
 })
 export class CharacterComponent implements OnInit {
 
-  private character: Character;
-  private loading: boolean = false;
+  public character: Character;
+  public loading: boolean = false;
   
   constructor(
     private route: ActivatedRoute,

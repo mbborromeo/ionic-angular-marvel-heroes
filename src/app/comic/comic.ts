@@ -7,4 +7,5 @@ export class Comic {
         path: string,
         extension: string
     };
+    issueNumber: number;
 }
