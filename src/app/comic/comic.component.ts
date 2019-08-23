@@ -24,7 +24,6 @@ export class ComicComponent implements OnInit {
   getComic(): void {
     this.comicID = +this.route.snapshot.paramMap.get('id'); //get ID from URL
     this.loading = true;
-    console.log("comic.component: getComic() - comicID is: ", this.comicID);
 
     const myObserver = {
       next: (data) => {

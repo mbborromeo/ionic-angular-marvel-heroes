@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MarvelApiCallService } from '../marvel-api-call.service';
-//import { Observable, of } from 'rxjs';
 import { Character } from '../character/character';
 
 @Component({
@@ -12,15 +11,9 @@ import { Character } from '../character/character';
 })
 export class CharacterComponent implements OnInit {
 
-  private character: Character; //Observable<Character>
+  private character: Character;
   private loading: boolean = false;
   
-  /*
-  confirmID: number;
-  name: string;
-  confirmDescription: string;
-  */  
-
   constructor(
     private route: ActivatedRoute,
     private location: Location,
