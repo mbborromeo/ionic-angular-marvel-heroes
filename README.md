@@ -23,6 +23,17 @@ If you want to test on your mobile device, install Ionic DevApp on your phone, m
 - Character Comics list page (with previous/next page buttons for results)
 - Comic details page
 
+## Credits / Attribution
+Data provided by Marvel. © 2014 Marvel (http://marvel.com)
+
+Ionic (https://ionicframework.com/docs)
+
+Angular (https://angular.io/docs)
+
+CryptoJS (https://github.com/brix/crypto-js)
+
+NPM (https://www.npmjs.com/get-npm)
+
 ## Future Improvements / To Do
 - create global function/component for Back button used on most pages
 - create component for Previous & Next buttons used on list pages
@@ -36,16 +47,3 @@ If you want to test on your mobile device, install Ionic DevApp on your phone, m
 - remove keys
 
 ## Bugs to fix
-
-
-## Credits / Attribution
-
-Data provided by Marvel. © 2014 Marvel (http://marvel.com)
-
-Ionic (https://ionicframework.com/docs)
-
-Angular (https://angular.io/docs)
-
-CryptoJS (https://github.com/brix/crypto-js)
-
-NPM (https://www.npmjs.com/get-npm)
