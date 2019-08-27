@@ -22,6 +22,7 @@ If you want to test on your mobile device, install Ionic DevApp on your phone, m
 
 ## Deploy onto GitHub Pages
 
+`ng build --prod --output-path docs --base-href /ionic-angular-marvel-heroes/`
 
 
 ## App Features
