@@ -13,11 +13,12 @@ import { MarvelData } from '../marvel-data';
 export class ComicsComponent implements OnInit {
   public characterID: number;
   public characterName: string;
+  public characterPhoto: string;
   
   //private comics: Comic[] = [];
   public marvelData: MarvelData;
   public loading: boolean = false;
-  public loadingName: boolean = false;
+  public loadingCharacter: boolean = false;
 
   //vars for page buttons
   public totalItemsReturned: number;
@@ -87,14 +88,16 @@ export class ComicsComponent implements OnInit {
     }
   }
 
-  getCharacterName(): void {
+  getCharacter(): void {
     let id = +this.route.snapshot.paramMap.get('id'); //get ID from URL
-    this.loadingName = true;
+    this.loadingCharacter = true;
 
     // Create observer object
     const myObserver = {
       next: (res) => {
         this.characterName = res.name; //filter out the name only
+        this.characterPhoto = res.thumbnail.path + '.' + res.thumbnail.extension;
+        console.log("characterPhoto is: ", this.characterPhoto);
 
         if( this.characterName === undefined) {
           console.log("characterName UNDEFINED");      
@@ -102,7 +105,7 @@ export class ComicsComponent implements OnInit {
       },
       error: (err) => console.error('Character Observer got an error: ' + err),
       complete: () => {         
-        this.loadingName = false;
+        this.loadingCharacter = false;
         console.log("this.characterName when subscribe complete: ", this.characterName);
       },
     };
@@ -116,7 +119,7 @@ export class ComicsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCharacterName(); 
+    this.getCharacter(); 
     this.getComicsOfCharacter();    
   }
 }

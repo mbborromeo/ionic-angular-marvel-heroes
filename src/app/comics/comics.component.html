@@ -1,8 +1,7 @@
-<div class="ion-padding">
+ <div class="ion-padding">
   <div class="container-buttons">
     <!-- Back button-->
     <a class="btn-back" (click)="goBack()">&laquo; Back</a>
-    <br />
   </div>
 
   <div *ngIf="loading"><!-- marvelData.data.results.length===0 &&  -->
@@ -17,7 +16,7 @@
   </div>
 
   <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length>0 && !loading"> 
-    <h1 *ngIf="characterName && !loadingName">{{ characterName + ' ' }} Comics</h1>
+    <h1 *ngIf="characterName && !loadingCharacter">{{ characterName + ' ' }} Comics</h1>
 
     <ion-list>
       <ion-item *ngFor="let comic of marvelData.data.results" detail="false" routerLink="/comic/{{ comic.id }}">
