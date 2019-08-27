@@ -51,9 +51,9 @@
         bottom: 0;
     }
 
-    a {
-        text-decoration: underline;
+    a {        
         cursor: pointer;
+        display: block;
 
         &.disabled {
             pointer-events: none;
@@ -104,3 +104,8 @@ ion-spinner {
     position: unset;    
 }
 */
+
+ion-title a {
+    text-decoration: none;
+    color: #f4f5f8;
+}
