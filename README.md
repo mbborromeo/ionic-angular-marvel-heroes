@@ -20,6 +20,10 @@ If you want to test on your mobile device, install Ionic DevApp on your phone, m
 
 `ionic serve --devapp`
 
+## Deploy onto GitHub Pages
+
+
+
 ## App Features
 - Welcome page
 - Characters list page (with search field and previous/next page buttons for results)
