@@ -1,8 +1,10 @@
 <ion-app>
   <ion-header>
-    <ion-toolbar>      
+    <ion-toolbar color="danger">      
       <ion-title>
-        <a class="header" routerLink="/home">Mike's Marvel App</a>        
+        <a class="header" routerLink="/home" title="The Walt Disney Company [Public domain], via Wikimedia Commons">
+          <img height="40" alt="MarvelLogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/MarvelLogo.svg/512px-MarvelLogo.svg.png" />
+        </a>        
       </ion-title>        
     </ion-toolbar>
   </ion-header>
@@ -12,11 +14,10 @@
   </ion-content>
 
   <ion-footer>
-    <ion-toolbar>
-      <ion-title>
-          data from <a href="http://marvel.com">&copy; Marvel 2014</a>
+    <ion-toolbar color="dark">
+      <ion-title color="light">
+          <a href="http://marvel.com">data from &copy; Marvel 2014</a>
       </ion-title>      
     </ion-toolbar>
   </ion-footer>
-
 </ion-app>
