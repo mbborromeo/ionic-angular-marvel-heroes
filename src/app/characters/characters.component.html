@@ -17,9 +17,9 @@
   <div *ngIf="marvelData && marvelData.data && marvelData.data.results && marvelData.data.results.length>0 && !loading">
     <ion-list>
       <ion-item *ngFor="let character of marvelData.data.results" detail="false" routerLink="/character/{{ character.id }}">
-        <ion-thumbnail slot="start">
+        <ion-avatar slot="start">
           <img src="{{ character.thumbnail.path + '.' + character.thumbnail.extension }}" />
-        </ion-thumbnail>
+        </ion-avatar>
         <ion-label text-wrap>{{ character.name }}</ion-label>
       </ion-item>
     </ion-list>
