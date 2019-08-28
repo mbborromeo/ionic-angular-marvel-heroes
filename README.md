@@ -22,7 +22,16 @@ If you want to test on your mobile device, install Ionic DevApp on your phone, m
 
 ## Deploy onto GitHub Pages
 
+Create productions files in 'docs' folder locally:
 `ng build --prod --output-path docs --base-href /ionic-angular-marvel-heroes/`
+
+Copy the index.html file and rename the copy to 404.html.
+
+Then, add, commit, push, and merge to Master Origin branch on repository.
+
+On your repository settings, make sure for GitHub Pages you are pointing to the 'docs' folder on your Master branch.
+
+Give it a few minutes to deploy, then it should be visible on the live URL link mentioned above.
 
 
 ## App Features
